@@ -1,0 +1,25 @@
+460 ICON icon.ico
+
+1 VERSIONINFO
+FILEVERSION     0,0,0,1
+PRODUCTVERSION  0,0,0,1
+BEGIN
+  BLOCK "StringFileInfo"
+  BEGIN
+    BLOCK "040904E4"	// English US
+    BEGIN
+	  VALUE "CompanyName", "AX"
+      VALUE "FileDescription", "Tektite"
+      VALUE "FileVersion", "0.0.1a"
+      VALUE "InternalName", "tektite windows"
+      VALUE "LegalCopyright", "(c) 2023 AX (@axdev_)"
+      VALUE "OriginalFilename", "tektite_windows.exe"
+      VALUE "ProductName", "tektite windows"
+      VALUE "ProductVersion", "0.0.1a"
+    END
+  END
+  BLOCK "VarFileInfo"
+  BEGIN
+    VALUE "Translation", 0x409, 1252	// English US
+  END
+END
