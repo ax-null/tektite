@@ -1,4 +1,5 @@
 #include <core/engine.hpp>
+#include <memory>
 
 #ifdef __EMSCRIPTEN__
 #include <GLES2/gl2.h>
@@ -14,8 +15,8 @@ extern "C" {
 #include <lualib.h>
 }
 
-#include <json/json.h>
 #include <fstream>
+#include <json/json.h>
 
 #include "third_party/miniaudio.h"
 
@@ -35,11 +36,15 @@ static const GLchar *fragmentSource =
 
 static GLuint vbo, shaderProgram, posAttrib;
 static ma_engine engine;
+static float color;
 
 namespace Tektite
 {
     Engine::Engine()
     {
+        m_input = std::make_unique<Input>();
+        m_running = true;
+
         // Create a Vertex Buffer Object and copy the vertex data to it
         glGenBuffers(1, &vbo);
 
@@ -105,15 +110,26 @@ namespace Tektite
         glDeleteBuffers(1, &vbo);
     }
 
-    void Engine::click()
+    void Engine::update()
     {
-        ma_engine_play_sound(&engine, "assets/hit_hurt.wav", NULL);
+        m_input->update();
+
+        if (m_input->isPressed(Keyboard::Escape))
+            m_running = false;
+
+        if (m_input->isPressed(Keyboard::Space))
+            ma_engine_play_sound(&engine, "assets/hit_hurt.wav", NULL);
+
+        if (m_input->isPressed(Mouse::Left))
+            ma_engine_play_sound(&engine, "assets/laser.wav", NULL);
+
+        color = fmod(color + 0.005f, 1.0f);
     }
 
     void Engine::render()
     {
         // Clear the screen to black
-        glClearColor(0.25f, 0.25f, 0.25f, 1.0f);
+        glClearColor(color, 0.25f, 0.25f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
 
         // Draw a triangle from the 3 vertices
