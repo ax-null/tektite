@@ -1,4 +1,4 @@
-#include <core/input.hpp>
+#include <core/input/input.hpp>
 
 namespace Tektite
 {
@@ -14,7 +14,7 @@ namespace Tektite
     void Input::onMove(float x, float y)
     {
         m_mouse.posX = x;
-        m_mouse.posY = x;
+        m_mouse.posY = y;
     }
 
     void Input::onPress(Keyboard::Key key)
@@ -64,7 +64,7 @@ namespace Tektite
 
     bool Input::isDown(Mouse::Button button) const
     {
-        return m_currKeys.keys[static_cast<uint32_t>(button)];
+        return m_currMouse.buttons[static_cast<uint32_t>(button)];
     }
 
     bool Input::isPressed(Keyboard::Key key) const

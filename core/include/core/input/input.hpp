@@ -1,6 +1,6 @@
 #pragma once
 
-#include "common.hpp"
+#include <stdint.h>
 
 namespace Tektite
 {

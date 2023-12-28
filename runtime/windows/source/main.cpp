@@ -1,4 +1,4 @@
-#include <core/engine.hpp>
+#include <core/engine/engine.hpp>
 
 #include <iostream>
 
@@ -182,9 +182,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR lpCmdLine,
             ::DispatchMessage(&state.message);
         }
 
-        state.engine->update();
-        state.engine->render();
-
+        state.engine->run();
         SwapBuffers(hDC);
     };
 

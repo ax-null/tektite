@@ -1,7 +1,23 @@
 add_library(tektite_core STATIC
+    "source/audio/audio.cpp"
+    "source/engine/engine.cpp"
+
+    "source/graphics/font.cpp"
+    "source/graphics/graphics.cpp"
+    "source/graphics/texture.cpp"
+
+    "source/input/input.cpp"
+
+    "source/script/module/audio_module.cpp"
+    "source/script/module/graphics_module.cpp"
+    "source/script/module/input_module.cpp"
+
+    "source/script/object/font_object.cpp"
+    "source/script/object/texture_object.cpp"
+
+    "source/script/script.cpp"
+
     "source/third_party/miniaudio.c"
-    "source/engine.cpp"
-    "source/input.cpp"
 )
 
 set(LIBS glm lua_static jsoncpp_static)

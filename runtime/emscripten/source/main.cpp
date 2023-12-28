@@ -1,4 +1,4 @@
-#include <core/engine.hpp>
+#include <core/engine/engine.hpp>
 
 #include <emscripten.h>
 #include <emscripten/dom_pk_codes.h>
@@ -72,21 +72,12 @@ EM_BOOL mouseMoveEvent(int eventType, const EmscriptenMouseEvent *mouseEvent, vo
     return false;
 }
 
-void run()
-{
-    state.engine->update();
-    state.engine->render();
-
-    emscripten_webgl_commit_frame();
-}
-
 int main(int argc, char **argv)
 {
     state = EmscriptenState();
-    state.shouldQuit = false;
 
-    state.width = 640;
-    state.height = 480;
+    state.width = 800;
+    state.height = 600;
 
     emscripten_set_window_title("Tektite");
     emscripten_set_canvas_element_size("#canvas", state.width, state.height);
@@ -109,7 +100,12 @@ int main(int argc, char **argv)
     emscripten_set_mouseup_callback_on_thread("#canvas", nullptr, false, mouseUpEvent, 0);
     emscripten_set_mousemove_callback_on_thread("#canvas", nullptr, false, mouseMoveEvent, 0);
 
-    emscripten_set_main_loop(run, 0, true);
+    auto loop = []() {
+        state.engine->run();
+        emscripten_webgl_commit_frame();
+    };
+
+    emscripten_set_main_loop(loop, 0, true);
     emscripten_webgl_destroy_context(state.context);
 
     delete state.engine;
