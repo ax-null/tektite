@@ -1,0 +1,171 @@
+{ "compressionlevel":-1,
+ "height":13,
+ "infinite":false,
+ "layers":[
+        {
+         "data":[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 2, 2, 3, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 81, 82, 82, 82, 82, 83, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 0,
+            0, 41, 42, 42, 42, 42, 42, 42, 42, 42, 42, 42, 42, 42, 42, 42, 42, 42, 42, 42, 43, 0],
+         "height":13,
+         "id":1,
+         "name":"background_layer",
+         "opacity":1,
+         "type":"tilelayer",
+         "visible":true,
+         "width":22,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "data":[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+         "height":13,
+         "id":4,
+         "name":"foreground_layer",
+         "opacity":1,
+         "type":"tilelayer",
+         "visible":false,
+         "width":22,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"index",
+         "id":2,
+         "name":"entity_layer",
+         "objects":[
+                {
+                 "id":1,
+                 "name":"Player",
+                 "properties":[
+                        {
+                         "name":"script_path",
+                         "type":"string",
+                         "value":"assets\/entities\/player.lua"
+                        }, 
+                        {
+                         "name":"tag",
+                         "type":"int",
+                         "value":2
+                        }],
+                 "template":"entity.json",
+                 "x":160,
+                 "y":-16
+                }, 
+                {
+                 "id":3,
+                 "name":"Flying",
+                 "properties":[
+                        {
+                         "name":"script_path",
+                         "type":"string",
+                         "value":"assets\/entities\/flying.lua"
+                        }, 
+                        {
+                         "name":"tag",
+                         "type":"int",
+                         "value":4
+                        }],
+                 "template":"entity.json",
+                 "x":128,
+                 "y":80
+                }, 
+                {
+                 "height":32,
+                 "id":4,
+                 "name":"Solid",
+                 "properties":[
+                        {
+                         "name":"script_path",
+                         "type":"string",
+                         "value":"assets\/entities\/solid.lua"
+                        }, 
+                        {
+                         "name":"tag",
+                         "type":"int",
+                         "value":4
+                        }],
+                 "template":"entity.json",
+                 "width":320,
+                 "x":16,
+                 "y":176
+                }, 
+                {
+                 "height":32,
+                 "id":11,
+                 "name":"Solid",
+                 "properties":[
+                        {
+                         "name":"script_path",
+                         "type":"string",
+                         "value":"assets\/entities\/solid.lua"
+                        }, 
+                        {
+                         "name":"tag",
+                         "type":"int",
+                         "value":4
+                        }],
+                 "template":"entity.json",
+                 "width":96,
+                 "x":208,
+                 "y":80
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }],
+ "nextlayerid":5,
+ "nextobjectid":12,
+ "orientation":"orthogonal",
+ "renderorder":"left-up",
+ "tiledversion":"1.10.2",
+ "tileheight":16,
+ "tilesets":[
+        {
+         "columns":40,
+         "firstgid":1,
+         "image":"..\/textures\/tileset.png",
+         "imageheight":480,
+         "imagewidth":640,
+         "margin":0,
+         "name":"tileset",
+         "properties":[
+                {
+                 "name":"path",
+                 "type":"string",
+                 "value":"assets\/textures\/tileset.png"
+                }],
+         "spacing":0,
+         "tilecount":1200,
+         "tileheight":16,
+         "tilewidth":16,
+         "transparentcolor":"#ff00ff"
+        }],
+ "tilewidth":16,
+ "type":"map",
+ "version":"1.10",
+ "width":22
+}

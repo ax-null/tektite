@@ -1,3 +1,4 @@
+#include <core/graphics/graphics.hpp>
 #include <core/script/script.hpp>
 
 namespace Tektite
@@ -92,7 +93,7 @@ namespace Tektite
          } },
         { "draw_string", [](lua_State *L) {
              Font *font = static_cast<Font *>(lua_touserdata(L, -4));
-             const char *text = static_cast<const char*>(lua_tostring(L, -3));
+             const char *text = static_cast<const char *>(lua_tostring(L, -3));
              float x = static_cast<float>(lua_tonumber(L, -2));
              float y = static_cast<float>(lua_tonumber(L, -1));
              lua_getupvalue(L, -5, 1);

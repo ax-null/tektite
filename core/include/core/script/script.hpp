@@ -6,25 +6,28 @@ extern "C" {
 #include <lualib.h>
 }
 
-#include "../audio/audio.hpp"
-#include "../graphics/graphics.hpp"
-#include "../input/input.hpp"
-
 namespace Tektite
 {
+
+    class Audio;
+    class Graphics;
+    class Input;
+    class World;
 
     namespace Module
     {
         void initializeAudio(lua_State *L, Audio *audio);
         void initializeGraphics(lua_State *L, Graphics *graphics);
         void initializeInput(lua_State *L, Input *input);
+        void initializeWorld(lua_State *L, World *world);
     } // namespace Module
 
     namespace Object
     {
+        void defineEntity(lua_State *L);
         void defineFont(lua_State *L);
         void defineTexture(lua_State *L);
-    }
+    } // namespace Object
 
     class Script
     {
@@ -35,8 +38,9 @@ namespace Tektite
         void initializeModule(Audio *audio);
         void initializeModule(Graphics *graphics);
         void initializeModule(Input *input);
+        void initializeModule(World *world);
 
-        void initializeObjects();
+        void defineObjects();
 
         void execute(const char *path);
 

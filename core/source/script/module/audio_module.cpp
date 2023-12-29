@@ -1,10 +1,11 @@
+#include <core/audio/audio.hpp>
 #include <core/script/script.hpp>
 
 namespace Tektite
 {
     const luaL_Reg functions[] = {
         { "play_sound", [](lua_State *L) {
-             const char* path = static_cast<const char*>(lua_tostring(L, -1));
+             const char *path = static_cast<const char *>(lua_tostring(L, -1));
              lua_getupvalue(L, -2, 1);
              Audio *audio = (Audio *)lua_touserdata(L, -1);
              audio->playSound(path);

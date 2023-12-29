@@ -122,11 +122,25 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR lpCmdLine,
     state.width = 800;
     state.height = 600;
 
+    RECT rect = { 0, 0, (LONG)state.width, (LONG)state.height };
+    DWORD dwStyle = WS_OVERLAPPEDWINDOW ^ WS_MAXIMIZEBOX ^ WS_THICKFRAME;
+    AdjustWindowRect(&rect, dwStyle, false);
+
+    int32_t windowWidth = rect.right - rect.left;
+    int32_t windowHeight = rect.bottom - rect.top;
+
     if ((state.window = CreateWindowExA(0, state.windowClass.lpszClassName, "Tektite",
-                                        WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX | WS_VISIBLE,
-                                        CW_USEDEFAULT, CW_USEDEFAULT, state.width, state.height,
+                                        dwStyle, CW_USEDEFAULT, CW_USEDEFAULT, windowWidth, windowHeight,
                                         NULL, NULL, hInstance, NULL)) == NULL)
         return -1;
+
+    MONITORINFO monitor = { sizeof(monitor) };
+    GetMonitorInfo(MonitorFromWindow(state.window, MONITOR_DEFAULTTONEAREST), &monitor);
+
+    int32_t windowXPos = (monitor.rcMonitor.right - monitor.rcMonitor.left - windowWidth) / 2;
+    int32_t windowYPos = (monitor.rcMonitor.bottom - monitor.rcMonitor.top - windowHeight) / 2;
+
+    SetWindowPos(state.window, 0, windowXPos, windowYPos, 0, 0, SWP_NOZORDER | SWP_NOSIZE);
 
     initializeWGL(state.windowClass.lpszClassName, hInstance);
 
@@ -176,12 +190,14 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR lpCmdLine,
 
     state.engine = new Tektite::Engine();
 
+    ShowWindow(state.window, SW_SHOWDEFAULT);
+    UpdateWindow(state.window);
+
     while (state.engine->isRunning() && !state.shouldQuit) {
-        if (PeekMessage(&state.message, NULL, 0U, 0U, PM_REMOVE)) {
+        while (PeekMessage(&state.message, NULL, 0U, 0U, PM_REMOVE)) {
             ::TranslateMessage(&state.message);
             ::DispatchMessage(&state.message);
         }
-
         state.engine->run();
         SwapBuffers(hDC);
     };
@@ -192,7 +208,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR lpCmdLine,
     DestroyWindow(state.window);
 
     UnregisterClass(state.windowClass.lpszClassName, hInstance);
-
     return 0;
 }
 

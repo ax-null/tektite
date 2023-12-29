@@ -29,8 +29,14 @@ namespace Tektite
         Module::initializeInput(m_state, input);
     }
 
-    void Script::initializeObjects()
+    void Script::initializeModule(World *world)
     {
+        Module::initializeWorld(m_state, world);
+    }
+
+    void Script::defineObjects()
+    {
+        Object::defineEntity(m_state);
         Object::defineFont(m_state);
         Object::defineTexture(m_state);
     }
