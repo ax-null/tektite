@@ -1,4 +1,4 @@
-#include "core/graphics/texture.hpp"
+#include <core/graphics/texture.hpp>
 #include <core/script/script.hpp>
 
 #include <new>

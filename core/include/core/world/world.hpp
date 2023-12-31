@@ -3,15 +3,16 @@
 #include "core/graphics/graphics.hpp"
 #include "core/script/script.hpp"
 #include "core/world/tilemap.hpp"
-#include "entity.hpp"
+
 #include <vector>
 
 namespace Tektite
 {
+    class Entity;
     class World
     {
       public:
-        World(Script *script);
+        World(Script *script) : m_script(script) {}
         ~World() = default;
 
         void update();
@@ -21,9 +22,14 @@ namespace Tektite
 
         void addEntity(Entity *entity);
 
+        const std::vector<Entity *> &getEntities() const { return m_entities; }
+        const std::vector<Entity *> &getEntitiesForTag(uint32_t tag);
+
+        const TileMap *getTileMap() const { return m_tilemap.get(); }
+
       private:
         std::unique_ptr<TileMap> m_tilemap;
-        std::vector<Entity *> m_entities;
+        std::vector<Entity *> m_entities, m_tagged;
 
         Script *m_script;
     };

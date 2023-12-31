@@ -101,6 +101,44 @@ namespace Tektite
              graphics->drawString(font, text, x, y);
              return 0;
          } },
+        { "set_camera_position", [](lua_State *L) {
+             float x = static_cast<float>(lua_tonumber(L, -2));
+             float y = static_cast<float>(lua_tonumber(L, -1));
+             lua_getupvalue(L, -3, 1);
+             Graphics *graphics = (Graphics *)lua_touserdata(L, -1);
+             graphics->getCamera()->setPosition(x, y);
+             return 0;
+         } },
+        { "set_camera_lerp_to", [](lua_State *L) {
+             float x = static_cast<float>(lua_tonumber(L, -3));
+             float y = static_cast<float>(lua_tonumber(L, -2));
+             float amount = static_cast<float>(lua_tonumber(L, -1));
+             lua_getupvalue(L, -4, 1);
+             Graphics *graphics = (Graphics *)lua_touserdata(L, -1);
+             graphics->getCamera()->lerpTo(x, y, amount);
+             return 0;
+         } },
+        { "get_camera_position", [](lua_State *L) {
+             lua_getupvalue(L, -1, 1);
+             Graphics *graphics = (Graphics *)lua_touserdata(L, -1);
+             lua_pushnumber(L, graphics->getCamera()->getX());
+             lua_pushnumber(L, graphics->getCamera()->getY());
+             return 2;
+         } },
+        { "get_screen_size", [](lua_State *L) {
+             lua_getupvalue(L, -1, 1);
+             Graphics *graphics = (Graphics *)lua_touserdata(L, -1);
+             lua_pushnumber(L, graphics->getScreenWidth());
+             lua_pushnumber(L, graphics->getScreenHeight());
+             return 2;
+         } },
+        { "get_virtual_size", [](lua_State *L) {
+             lua_getupvalue(L, -1, 1);
+             Graphics *graphics = (Graphics *)lua_touserdata(L, -1);
+             lua_pushnumber(L, graphics->getVirtualWidth());
+             lua_pushnumber(L, graphics->getVirtualHeight());
+             return 2;
+         } },
         { nullptr, nullptr }
     };
 

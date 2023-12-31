@@ -3,6 +3,7 @@ add_library(tektite_core STATIC
 
     "source/engine/engine.cpp"
 
+    "source/graphics/camera.cpp"
     "source/graphics/font.cpp"
     "source/graphics/graphics.cpp"
     "source/graphics/texture.cpp"
@@ -13,7 +14,7 @@ add_library(tektite_core STATIC
     "source/script/module/graphics_module.cpp"
     "source/script/module/input_module.cpp"
     "source/script/module/world_module.cpp"
-
+	
     "source/script/object/entity_object.cpp"
     "source/script/object/font_object.cpp"
     "source/script/object/texture_object.cpp"

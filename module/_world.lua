@@ -20,6 +20,36 @@ function entity.update(self) end
 --- @param self entity
 function entity.render(self) end
 
+--- check for collision
+--- @param self entity
+--- @param x number
+--- @param y number
+--- @return boolean
+function entity.collide_check(self, x, y) end
+
+--- check for collision
+--- @param self entity
+--- @param tag number
+--- @param x number
+--- @param y number
+--- @return boolean
+function entity.collide_check(self, tag, x, y) end
+
+--- check for collision
+--- @param self entity
+--- @param x number
+--- @param y number
+--- @return entity
+function entity.collide_first(self, x, y) end
+
+--- check for collision
+--- @param self entity
+--- @param tag number
+--- @param x number
+--- @param y number
+--- @return entity
+function entity.collide_first(self, tag, x, y) end
+
 --- set this entity position
 --- @param self entity
 --- @param x number
@@ -39,17 +69,17 @@ function entity.get_tag(self) end
 
 --- get this entity name
 --- @param self entity
---- @return string
+--- @return string name
 function entity.get_name(self) end
 
 --- get this entity position
 --- @param self entity
---- @return number
---- @return number
+--- @return number x
+--- @return number y
 function entity.get_position(self) end
 
 --- get this entity size
 --- @param self entity
---- @return number
---- @return number
+--- @return number width
+--- @return number height
 function entity.get_size(self) end

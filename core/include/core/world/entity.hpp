@@ -1,11 +1,13 @@
 #pragma once
 
+#include <core/script/script.hpp>
+#include <core/world/world.hpp>
 #include <stdint.h>
 #include <string>
+#include <vector>
 
 namespace Tektite
 {
-    class World;
     class Entity
     {
       public:
@@ -16,6 +18,14 @@ namespace Tektite
         virtual void render() = 0;
 
         virtual void destroy() = 0;
+
+        bool collideCheck(float x, float y) { return collideCheck(m_world->getEntities(), x, y); }
+        bool collideCheck(uint32_t tag, float x, float y) { return collideCheck(m_world->getEntitiesForTag(tag), x, y); }
+        bool collideCheck(const std::vector<Entity *> &entities, float x, float y);
+
+        Entity *collideFirst(float x, float y) { return collideFirst(m_world->getEntities(), x, y); }
+        Entity *collideFirst(uint32_t tag, float x, float y) { return collideFirst(m_world->getEntitiesForTag(tag), x, y); }
+        Entity *collideFirst(const std::vector<Entity *> &entities, float x, float y);
 
         void setPosition(float x, float y)
         {

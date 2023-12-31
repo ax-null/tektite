@@ -18,6 +18,7 @@ namespace Tektite
 
         void run();
 
+        Graphics *getGraphics() const { return m_graphics.get(); }
         Input *getInput() const { return m_input.get(); }
         bool isRunning() const { return m_running; }
 

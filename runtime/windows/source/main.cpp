@@ -40,6 +40,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
         Tektite::Input *input = state.engine->getInput();
 
         switch (msg) {
+        case WM_SIZE:
+            RECT rect;
+            GetClientRect(state.window, &rect);
+            state.engine->getGraphics()->resize(rect.right - rect.left, rect.bottom - rect.top);
+            break;
         case WM_KEYDOWN:
         case WM_SYSKEYDOWN:
         case WM_KEYUP:
@@ -123,7 +128,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR lpCmdLine,
     state.height = 600;
 
     RECT rect = { 0, 0, (LONG)state.width, (LONG)state.height };
-    DWORD dwStyle = WS_OVERLAPPEDWINDOW ^ WS_MAXIMIZEBOX ^ WS_THICKFRAME;
+    DWORD dwStyle = WS_OVERLAPPEDWINDOW;
     AdjustWindowRect(&rect, dwStyle, false);
 
     int32_t windowWidth = rect.right - rect.left;

@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "assets/maps/castle_floor_1.json",
+    "activeFile": "test_map.json",
     "expandedProjectPaths": [
         ".",
         "assets",
@@ -33,7 +33,16 @@
             "scaleInDock": 1,
             "scaleInEditor": 1
         },
+        "test_map.json": {
+            "scale": 0.5,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 696,
+                "y": 488
+            }
+        },
         "test_map.json#tileset": {
+            "scaleInDock": 4,
             "scaleInEditor": 1
         }
     },
@@ -47,14 +56,15 @@
     "map.lastUsedFormat": "json",
     "map.renderOrder": null,
     "openFiles": [
-        "assets/maps/castle_floor_1.json"
+        "test_map.json"
     ],
     "project": "map.tiled-project",
-    "property.type": "string",
+    "property.type": "bool",
     "recentFiles": [
+        "test_map.json",
         "castle_floor_1.json",
         "assets/maps/castle_floor_1.json"
     ],
-    "resizeMap.removeObjects": true,
+    "resizeMap.removeObjects": false,
     "tileset.embedInMap": true
 }

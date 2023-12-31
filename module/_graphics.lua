@@ -68,6 +68,32 @@ function graphics.draw_texture(texture, x, y) end
 --- @param y number
 function graphics.draw_string(font, text, x, y) end
 
+--- set camera position
+--- @param x number
+--- @param y number
+function graphics.set_camera_position(x, y) end
+
+--- set camera to lerp
+--- @param x number
+--- @param y number
+--- @param amout number
+function graphics.set_camera_lerp_to(x, y, amout) end
+
+--- get camera position
+--- @return number x
+--- @return number y
+function graphics.get_camera_position() end
+
+--- get actual screen size
+--- @return number width
+--- @return number height
+function graphics.get_screen_size() end
+
+--- get virtual screen size
+--- @return number width
+--- @return number height
+function graphics.get_virtual_size() end
+
 texture = {}
 
 --- creates a new texture

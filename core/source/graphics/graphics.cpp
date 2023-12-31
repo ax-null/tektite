@@ -1,4 +1,5 @@
 #include <core/graphics/graphics.hpp>
+#include <memory>
 
 #ifdef __EMSCRIPTEN__
 #include <GLES2/gl2.h>
@@ -43,6 +44,10 @@ namespace Tektite
 
     Graphics::Graphics(uint32_t width, uint32_t height)
     {
+        m_camera = std::make_unique<Camera>();
+        m_virtualWidth = width;
+        m_virtualHeight = height;
+
         glGenBuffers(1, &m_vbo);
         glBindBuffer(GL_ARRAY_BUFFER, m_vbo);
         glBufferData(GL_ARRAY_BUFFER, sizeof(m_vertices), m_vertices, GL_DYNAMIC_DRAW);
@@ -119,8 +124,6 @@ namespace Tektite
 
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-        m_matrix = glm::ortho<float>(0.0f, width, 0.0f, height, -1.0f, 1.0f);
     }
 
     Graphics::~Graphics()
@@ -136,7 +139,24 @@ namespace Tektite
     void Graphics::clear(float red, float green, float blue, float alpha)
     {
         glClearColor(red, green, blue, alpha);
+        glViewport(m_viewportX, m_viewportY, m_viewportWidth, m_viewportHeight);
         glClear(GL_COLOR_BUFFER_BIT);
+    }
+
+    void Graphics::resize(uint32_t width, uint32_t height)
+    {
+        m_screenWidth = width;
+        m_screenHeight = height;
+        float targetRatio = m_screenHeight / m_screenWidth;
+        float sourceRatio = m_virtualHeight / m_virtualWidth;
+        float scale = targetRatio > sourceRatio ? m_screenWidth / m_virtualWidth : m_screenHeight / m_virtualHeight;
+        int viewportWidth = glm::roundEven(m_virtualWidth * scale);
+        int viewportHeight = glm::roundEven(m_virtualHeight * scale);
+        m_viewportX = (m_screenWidth - viewportWidth) / 2.0f;
+        m_viewportY = (m_screenHeight - viewportHeight) / 2.0f;
+        m_viewportWidth = viewportWidth;
+        m_viewportHeight = viewportHeight;
+        m_projection = glm::ortho<float>(0.0f, m_virtualWidth, 0.0f, m_virtualHeight, 0.0f, 1.0f);
     }
 
     void Graphics::submit()
@@ -152,7 +172,7 @@ namespace Tektite
         glUseProgram(m_program);
 
         uint32_t location = glGetUniformLocation(m_program, "uMatrix");
-        glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(m_matrix));
+        glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(m_projection * m_camera->getMatrix()));
 
         glDrawElements(m_mode, m_index_count, GL_UNSIGNED_INT, 0);
 

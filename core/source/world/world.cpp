@@ -1,12 +1,11 @@
-#include "core/script/script.hpp"
+#include <core/script/script.hpp>
+#include <core/world/entity.hpp>
 #include <core/world/world.hpp>
+
 #include <cstdint>
 
 namespace Tektite
 {
-
-    World::World(Script *script) : m_script(script) {}
-
     void World::update()
     {
         for (uint32_t i = 0; i < m_entities.size(); ++i)
@@ -49,6 +48,16 @@ namespace Tektite
     void World::addEntity(Entity *entity)
     {
         m_entities.push_back(entity);
+    }
+
+    const std::vector<Entity *> &World::getEntitiesForTag(uint32_t tag)
+    {
+        m_tagged.clear();
+        for (uint32_t i = 0; i < m_entities.size(); ++i) {
+            if ((m_entities[i]->getTag() & tag) == tag)
+                m_tagged.push_back(m_entities[i]);
+        }
+        return m_tagged;
     }
 
 } // namespace Tektite

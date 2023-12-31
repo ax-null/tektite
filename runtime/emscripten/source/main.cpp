@@ -8,7 +8,7 @@ struct EmscriptenState
 {
     EMSCRIPTEN_WEBGL_CONTEXT_HANDLE context;
 
-    uint32_t width, height;
+    double width, height;
     Tektite::Engine *engine;
 } static state;
 
@@ -72,15 +72,19 @@ EM_BOOL mouseMoveEvent(int eventType, const EmscriptenMouseEvent *mouseEvent, vo
     return false;
 }
 
+EM_BOOL windowResizeEvent(int eventType, const EmscriptenUiEvent *uiEvent, void *userData)
+{
+    emscripten_get_element_css_size("#canvas", &state.width, &state.height);
+    state.engine->getGraphics()->resize(state.width, state.height);
+    return false;
+}
+
 int main(int argc, char **argv)
 {
     state = EmscriptenState();
 
-    state.width = 800;
-    state.height = 600;
-
     emscripten_set_window_title("Tektite");
-    emscripten_set_canvas_element_size("#canvas", state.width, state.height);
+    emscripten_get_element_css_size("#canvas", &state.width, &state.height);
 
     EmscriptenWebGLContextAttributes attributes = {
         true, true, true, true, true, true,
@@ -93,12 +97,14 @@ int main(int argc, char **argv)
     emscripten_webgl_make_context_current(state.context);
 
     state.engine = new Tektite::Engine();
+    state.engine->getGraphics()->resize(state.width, state.height);
 
     emscripten_set_keydown_callback_on_thread("#canvas", nullptr, false, keyDownEvent, 0);
     emscripten_set_keyup_callback_on_thread("#canvas", nullptr, false, keyUpEvent, 0);
     emscripten_set_mousedown_callback_on_thread("#canvas", nullptr, false, mouseDownEvent, 0);
     emscripten_set_mouseup_callback_on_thread("#canvas", nullptr, false, mouseUpEvent, 0);
     emscripten_set_mousemove_callback_on_thread("#canvas", nullptr, false, mouseMoveEvent, 0);
+    emscripten_set_resize_callback_on_thread(EMSCRIPTEN_EVENT_TARGET_WINDOW, nullptr, false, windowResizeEvent, 0);
 
     auto loop = []() {
         state.engine->run();

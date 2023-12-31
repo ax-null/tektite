@@ -1,18 +1,13 @@
 { "object":
     {
-     "height":32,
+     "height":16,
      "id":1,
      "name":"Entity",
      "properties":[
             {
-             "name":"name",
-             "type":"string",
-             "value":"Player"
-            }, 
-            {
              "name":"script_path",
              "type":"string",
-             "value":"assets\/scripts\/entities\/player.lua"
+             "value":""
             }, 
             {
              "name":"tag",
@@ -22,7 +17,7 @@
      "rotation":0,
      "type":"",
      "visible":true,
-     "width":32
+     "width":16
     },
  "type":"template"
 }

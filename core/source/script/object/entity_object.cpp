@@ -46,6 +46,7 @@ namespace Tektite
         }
 
         void setRef(int32_t ref) { m_ref = ref; }
+        int32_t getRef() const { return m_ref; }
 
       private:
         lua_State *m_state;
@@ -87,6 +88,43 @@ namespace Tektite
         { "destroy", [](lua_State *L) {
              // TODO: Destory lua object
              return 0;
+         } },
+        { "collide_check", [](lua_State *L) {
+             bool collide = false;
+             if (lua_isuserdata(L, -3)) {
+                 Entity *entity = (Entity *)lua_touserdata(L, -3);
+                 float x = lua_tonumber(L, -2);
+                 float y = lua_tonumber(L, -1);
+                 collide = entity->collideCheck(x, y);
+             } else if (lua_isnumber(L, -3)) {
+                 Entity *entity = (Entity *)lua_touserdata(L, -4);
+                 uint32_t tag = lua_tonumber(L, -3);
+                 float x = lua_tonumber(L, -2);
+                 float y = lua_tonumber(L, -1);
+                 collide = entity->collideCheck(tag, x, y);
+             }
+             lua_pushboolean(L, collide);
+             return 1;
+         } },
+        { "collide_first", [](lua_State *L) {
+             LuaEntity *result = nullptr;
+             if (lua_isuserdata(L, -3)) {
+                 Entity *entity = (Entity *)lua_touserdata(L, -3);
+                 float x = lua_tonumber(L, -2);
+                 float y = lua_tonumber(L, -1);
+                 result = (LuaEntity *)entity->collideFirst(x, y);
+             } else if (lua_isnumber(L, -3)) {
+                 Entity *entity = (Entity *)lua_touserdata(L, -4);
+                 uint32_t tag = lua_tonumber(L, -3);
+                 float x = lua_tonumber(L, -2);
+                 float y = lua_tonumber(L, -1);
+                 result = (LuaEntity *)entity->collideFirst(tag, x, y);
+             }
+             if (result != nullptr)
+                 lua_rawgeti(L, LUA_REGISTRYINDEX, result->getRef());
+             else
+                 lua_pushnil(L);
+             return 1;
          } },
         { "set_position", [](lua_State *L) {
              Entity *entity = (Entity *)lua_touserdata(L, -3);
