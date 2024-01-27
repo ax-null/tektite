@@ -8,5 +8,5 @@ target_include_directories(tektite_emscripten PRIVATE "source")
 target_link_libraries(tektite_emscripten 
 	tektite_core 
 	"-sAUDIO_WORKLET -sWASM_WORKERS -sASYNCIFY --emrun
-	--preload-file D:/Dev/Private/Tektite/assets@assets"
+	--preload-file ${CMAKE_SOURCE_DIR}/assets@assets"
 )

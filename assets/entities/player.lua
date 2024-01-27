@@ -6,9 +6,9 @@ local player = entity.new()
 player.velocity_x = 0
 player.velocity_y = 0
 
-player.is_attracting = 0
-
 player.texture = texture.new("assets/textures/player.png")
+
+local initial_x, initial_y = player:get_position()
 
 function player:check_field_collision()
     local x, y = self:get_position()
@@ -55,12 +55,19 @@ function player:apply_movement()
 end
 
 function player:update()
-    self.is_attracting = input.is_key_down(KEY_Z)
+    if input.is_key_pressed(KEY_R) then
+        player.velocity_x = 0
+        player.velocity_y = 0
+
+        player.is_attracting = 0
+
+        self:set_position(initial_x, initial_y)
+    end
 
     self.velocity_x = Clamp(self.velocity_x, -5, 5)
     self.velocity_y = Clamp(self.velocity_y, -5, 5)
 
-    if self.is_attracting then
+    if input.is_key_down(KEY_Z) then
         self:check_field_collision()
     end
 

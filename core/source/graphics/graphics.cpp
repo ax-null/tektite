@@ -1,5 +1,4 @@
 #include <core/graphics/graphics.hpp>
-#include <memory>
 
 #ifdef __EMSCRIPTEN__
 #include <GLES2/gl2.h>
@@ -71,7 +70,9 @@ namespace Tektite
             "}\0";
 
         const char *fragment_shader_source =
+            "#ifdef GL_ES\n"
             "precision mediump float;\n"
+            "#endif\n"
             "varying vec2 vTexCoord;\n"
             "varying vec4 vColor;\n"
             "uniform sampler2D uTexture;\n"

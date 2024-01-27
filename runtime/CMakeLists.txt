@@ -1,7 +1,7 @@
-if(WIN32)
-	add_subdirectory(windows)
+if(PLATFORM_EMSCRIPTEN)
+	add_subdirectory(emscripten)
 endif()
 
-if(EMSCRIPTEN)
-	add_subdirectory(emscripten)
+if(PLATFORM_DESKTOP)
+	add_subdirectory(desktop)
 endif()

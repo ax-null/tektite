@@ -14,6 +14,13 @@ struct EmscriptenState
 
 Tektite::Keyboard::Key translateKey(DOM_PK_CODE_TYPE keyCode);
 
+EM_BOOL windowResizeEvent(int eventType, const EmscriptenUiEvent *uiEvent, void *userData)
+{
+    emscripten_get_element_css_size("#canvas", &state.width, &state.height);
+    state.engine->getGraphics()->resize(state.width, state.height);
+    return false;
+}
+
 EM_BOOL keyDownEvent(int eventType, const EmscriptenKeyboardEvent *keyEvent, void *userData)
 {
     Tektite::Keyboard::Key key = translateKey(emscripten_compute_dom_pk_code(keyEvent->code));
@@ -69,13 +76,6 @@ EM_BOOL mouseUpEvent(int eventType, const EmscriptenMouseEvent *mouseEvent, void
 EM_BOOL mouseMoveEvent(int eventType, const EmscriptenMouseEvent *mouseEvent, void *userData)
 {
     state.engine->getInput()->onMove(mouseEvent->clientX, mouseEvent->clientY);
-    return false;
-}
-
-EM_BOOL windowResizeEvent(int eventType, const EmscriptenUiEvent *uiEvent, void *userData)
-{
-    emscripten_get_element_css_size("#canvas", &state.width, &state.height);
-    state.engine->getGraphics()->resize(state.width, state.height);
     return false;
 }
 

@@ -1,7 +1,11 @@
-# glad
-if(NOT EMSCRIPTEN)
-    add_subdirectory(glad/cmake)
-    glad_add_library(glad STATIC LOADER LANGUAGE C API gl:core=2.1 wgl=1.0)
+if(PLATFORM_DESKTOP)
+    # glad
+    add_subdirectory(glad)
+
+    # glfw
+    option(GLFW_BUILD_DOCS "Build the GLFW documentation" OFF)
+    option(GLFW_INSTALL "Generate installation target" OFF)
+    add_subdirectory(glfw)
 endif()
 
 # glm

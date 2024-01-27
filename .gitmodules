@@ -1,9 +1,9 @@
 [submodule "third_party/jsoncpp"]
 	path = third_party/jsoncpp
 	url = https://github.com/open-source-parsers/jsoncpp
-[submodule "third_party/glad"]
-	path = third_party/glad
-	url = https://github.com/Dav1dde/glad
 [submodule "third_party/glm"]
 	path = third_party/glm
 	url = https://github.com/g-truc/glm
+[submodule "third_party/glfw"]
+	path = third_party/glfw
+	url = https://github.com/glfw/glfw

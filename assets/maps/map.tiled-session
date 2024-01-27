@@ -5,9 +5,9 @@
     },
     "activeFile": "test_map.json",
     "expandedProjectPaths": [
-        ".",
         "assets",
-        "assets/maps"
+        "assets/maps",
+        "."
     ],
     "fileStates": {
         "assets/maps/castle_floor_1.json": {
@@ -34,11 +34,11 @@
             "scaleInEditor": 1
         },
         "test_map.json": {
-            "scale": 0.5,
+            "scale": 0.33,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 696,
-                "y": 488
+                "x": 612.1212121212121,
+                "y": 509.0909090909091
             }
         },
         "test_map.json#tileset": {
