@@ -11,10 +11,10 @@ BEGIN
 	  VALUE "CompanyName", "AX"
       VALUE "FileDescription", "Tektite"
       VALUE "FileVersion", "0.0.1a"
-      VALUE "InternalName", "tektite windows"
-      VALUE "LegalCopyright", "(c) 2023 AX (@axdev_)"
-      VALUE "OriginalFilename", "tektite_windows.exe"
-      VALUE "ProductName", "tektite windows"
+      VALUE "InternalName", "tektite desktop"
+      VALUE "LegalCopyright", "(c) 2024 AX (@axdev_)"
+      VALUE "OriginalFilename", "tektite_desktop.exe"
+      VALUE "ProductName", "tektite desktop"
       VALUE "ProductVersion", "0.0.1a"
     END
   END
