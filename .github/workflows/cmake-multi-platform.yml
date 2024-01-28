@@ -51,6 +51,7 @@ jobs:
       run: |
         if [ "$RUNNER_OS" == "Linux" ]; then
           sudo apt install xrandr-dev
+        fi
 
     - name: Set reusable strings
       id: strings
