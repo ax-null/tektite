@@ -5,5 +5,5 @@ add_executable(tektite_desktop
 
 target_include_directories(tektite_desktop PRIVATE "source")
 target_link_libraries(tektite_desktop PRIVATE
-    tektite_core glfw
+    tektite_engine glfw
 )

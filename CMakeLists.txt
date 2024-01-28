@@ -21,5 +21,5 @@ elseif(CMAKE_SYSTEM_NAME STREQUAL "Windows" OR
 endif()
 
 add_subdirectory(third_party)
-add_subdirectory(core)
+add_subdirectory(engine)
 add_subdirectory(runtime)
