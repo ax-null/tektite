@@ -50,7 +50,7 @@ jobs:
       shell: bash
       run: |
         if [ "$RUNNER_OS" == "Linux" ]; then
-          sudo apt install xrandr-dev
+          sudo apt install libxrandr-dev
         fi
 
     - name: Set reusable strings
