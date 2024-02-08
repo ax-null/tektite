@@ -2,10 +2,12 @@
 
 #include <stdint.h>
 
-namespace tektite
+namespace paper
 {
+
     namespace keyboard
     {
+
         enum Key
         {
             Up,
@@ -105,6 +107,7 @@ namespace tektite
 
     namespace mouse
     {
+
         enum Button
         {
             Left,
@@ -160,4 +163,4 @@ namespace tektite
         mouse::State m_mouse, m_prev_mouse, m_curr_mouse;
     };
 
-} // namespace tektite
+} // namespace paper

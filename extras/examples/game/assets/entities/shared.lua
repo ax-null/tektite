@@ -10,7 +10,7 @@ TAG = {
 --- gets the signum of the number
 --- @param value number
 ---@return integer
-function Signum(value)
+function math.signum(value)
     if value > 0 then
         return 1
     elseif value < 0 then
@@ -25,7 +25,7 @@ end
 --- @param lower number
 --- @param upper number
 ---@return number
-function Clamp(value, lower, upper)
+function math.clamp(value, lower, upper)
     return math.max(lower, math.min(upper, value))
 end
 

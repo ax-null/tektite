@@ -1,5 +1,3 @@
-GLFW_ICON ICON icon.ico
-
 1 VERSIONINFO
 FILEVERSION     0,0,0,1
 PRODUCTVERSION  0,0,0,1
@@ -9,12 +7,12 @@ BEGIN
     BLOCK "040904E4"	// English US
     BEGIN
       VALUE "CompanyName", "AX"
-      VALUE "FileDescription", "Tektite"
+      VALUE "FileDescription", "Paper's desktop runtime."
       VALUE "FileVersion", "0.0.1a"
-      VALUE "InternalName", "tektite desktop"
+      VALUE "InternalName", "paper_desktop"
       VALUE "LegalCopyright", "(C) 2024 AX"
-      VALUE "OriginalFilename", "tektite_desktop.exe"
-      VALUE "ProductName", "tektite desktop"
+      VALUE "OriginalFilename", "paper_desktop.exe"
+      VALUE "ProductName", "Paper Desktop"
       VALUE "ProductVersion", "0.0.1a"
     END
   END

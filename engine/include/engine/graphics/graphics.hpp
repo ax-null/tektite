@@ -8,8 +8,9 @@
 #include <memory>
 #include <stdint.h>
 
-namespace tektite
+namespace paper
 {
+
     class Graphics
     {
       public:
@@ -61,4 +62,4 @@ namespace tektite
         int32_t m_indices[INDEX_COUNT];
     };
 
-} // namespace tektite
+} // namespace paper

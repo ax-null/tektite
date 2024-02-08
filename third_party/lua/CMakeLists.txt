@@ -1,6 +1,6 @@
-project(lua LANGUAGES C VERSION 5.4.6)
+project(Lua LANGUAGES C VERSION 5.4.6)
 
-add_library(lua_static STATIC
+add_library(lua STATIC
     "src/lapi.c"
     "src/lcode.c"
     "src/lctype.c"
@@ -35,9 +35,9 @@ add_library(lua_static STATIC
     "src/linit.c"
 )
 
-target_include_directories(lua_static PUBLIC "src")
-set_target_properties(lua_static PROPERTIES VERSION "${PACKAGE_VERSION}")
+target_include_directories(lua PUBLIC "src")
+set_target_properties(lua PROPERTIES VERSION "${PACKAGE_VERSION}")
 
 if(EMSCRIPTEN)
-    target_compile_options(lua_static PUBLIC "-pthread")
+    target_compile_options(lua PUBLIC "-pthread")
 endif()

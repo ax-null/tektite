@@ -1,8 +1,9 @@
 #include <engine/audio/audio_engine.hpp>
 #include <engine/script/script_engine.hpp>
 
-namespace tektite
+namespace paper
 {
+
     const luaL_Reg functions[] = {
         { "play_sound", [](lua_State *L) {
              const char *path = static_cast<const char *>(lua_tostring(L, -1));
@@ -24,4 +25,4 @@ namespace tektite
         lua_setglobal(L, "audio");
     }
 
-} // namespace tektite
+} // namespace paper

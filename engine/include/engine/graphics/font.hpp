@@ -6,8 +6,9 @@
 #include <string>
 #include <unordered_map>
 
-namespace tektite
+namespace paper
 {
+
     class Font
     {
       public:
@@ -42,4 +43,5 @@ namespace tektite
 
         Texture **m_textures;
     };
-} // namespace tektite
+
+} // namespace paper

@@ -1,4 +1,4 @@
-add_library(tektite_engine STATIC
+add_library(paper_engine STATIC
     "source/audio/audio_engine.cpp"
 
     "source/graphics/camera.cpp"
@@ -28,7 +28,7 @@ add_library(tektite_engine STATIC
     "source/engine.cpp"
 )
 
-target_include_directories(tektite_engine PUBLIC "include" PRIVATE "source")
-target_link_libraries(tektite_engine PUBLIC 
-    glm lua_static jsoncpp_static $<$<BOOL:${PLATFORM_DESKTOP}>:glad>
+target_include_directories(paper_engine PUBLIC "include" PRIVATE "source")
+target_link_libraries(paper_engine PUBLIC 
+    glm lua jsoncpp_static $<$<BOOL:${PLATFORM_DESKTOP}>:glad>
 )

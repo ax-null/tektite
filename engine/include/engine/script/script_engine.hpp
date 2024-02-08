@@ -6,7 +6,7 @@ extern "C" {
 #include <lualib.h>
 }
 
-namespace tektite
+namespace paper
 {
 
     class AudioEngine;
@@ -16,18 +16,22 @@ namespace tektite
 
     namespace module
     {
+
         void initialize_audio_engine(lua_State *L, AudioEngine *audio);
         void initialize_graphics(lua_State *L, Graphics *graphics);
         void initialize_input_system(lua_State *L, InputSystem *input);
         void initialize_world(lua_State *L, World *world);
-    } // namespace Module
+
+    } // namespace module
 
     namespace object
     {
+
         void define_entity(lua_State *L);
         void define_font(lua_State *L);
         void define_texture(lua_State *L);
-    } // namespace Object
+
+    } // namespace object
 
     class ScriptEngine
     {
@@ -49,4 +53,5 @@ namespace tektite
       private:
         lua_State *m_state;
     };
-} // namespace tektite
+
+} // namespace paper

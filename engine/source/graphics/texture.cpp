@@ -11,7 +11,7 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include "../third_party/stb_image.h"
 
-namespace tektite
+namespace paper
 {
 
     Texture::Texture(const char *path)
@@ -43,4 +43,4 @@ namespace tektite
         glDeleteTextures(1, &m_handle);
     }
 
-} // namespace tektite
+} // namespace paper

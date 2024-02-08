@@ -34,8 +34,8 @@ function player:apply_movement()
     local x, y = self:get_position()
 
     if self:collide_check(TAG.SOLID, self.velocity_x, 0) then
-        while not self:collide_check(TAG.SOLID, Signum(self.velocity_x), 0) do
-            x = x + Signum(self.velocity_x)
+        while not self:collide_check(TAG.SOLID, math.signum(self.velocity_x), 0) do
+            x = x + math.signum(self.velocity_x)
             self:set_position(x, y)
         end
         self.velocity_x = -self.velocity_x
@@ -43,8 +43,8 @@ function player:apply_movement()
     x = x + math.floor(self.velocity_x + 0.5)
 
     if self:collide_check(TAG.SOLID, 0, self.velocity_y) then
-        while not self:collide_check(TAG.SOLID, 0, Signum(self.velocity_y)) do
-            y = y + Signum(self.velocity_y)
+        while not self:collide_check(TAG.SOLID, 0, math.signum(self.velocity_y)) do
+            y = y + math.signum(self.velocity_y)
             self:set_position(x, y)
         end
         self.velocity_y = -self.velocity_y
@@ -64,8 +64,8 @@ function player:update()
         self:set_position(initial_x, initial_y)
     end
 
-    self.velocity_x = Clamp(self.velocity_x, -5, 5)
-    self.velocity_y = Clamp(self.velocity_y, -5, 5)
+    self.velocity_x = math.clamp(self.velocity_x, -5, 5)
+    self.velocity_y = math.clamp(self.velocity_y, -5, 5)
 
     if input.is_key_down(KEY_Z) then
         self:check_field_collision()

@@ -9,10 +9,10 @@ struct EmscriptenState
     EMSCRIPTEN_WEBGL_CONTEXT_HANDLE context;
 
     double width, height;
-    tektite::Engine *engine;
+    paper::Engine *engine;
 } static state;
 
-tektite::keyboard::Key translate_key(DOM_PK_CODE_TYPE keyCode);
+paper::keyboard::Key translate_key(DOM_PK_CODE_TYPE keyCode);
 
 EM_BOOL window_resize_event(int eventType, const EmscriptenUiEvent *uiEvent, void *userData)
 {
@@ -23,14 +23,14 @@ EM_BOOL window_resize_event(int eventType, const EmscriptenUiEvent *uiEvent, voi
 
 EM_BOOL key_down_event(int eventType, const EmscriptenKeyboardEvent *keyEvent, void *userData)
 {
-    tektite::keyboard::Key key = translate_key(emscripten_compute_dom_pk_code(keyEvent->code));
+    paper::keyboard::Key key = translate_key(emscripten_compute_dom_pk_code(keyEvent->code));
     state.engine->get_input_system()->on_press(key);
     return true;
 }
 
 EM_BOOL key_up_event(int eventType, const EmscriptenKeyboardEvent *keyEvent, void *userData)
 {
-    tektite::keyboard::Key key = translate_key(emscripten_compute_dom_pk_code(keyEvent->code));
+    paper::keyboard::Key key = translate_key(emscripten_compute_dom_pk_code(keyEvent->code));
     state.engine->get_input_system()->on_release(key);
     return true;
 }
@@ -39,16 +39,16 @@ EM_BOOL mouse_down_event(int eventType, const EmscriptenMouseEvent *mouseEvent, 
 {
     switch (mouseEvent->button) {
     case 0:
-        state.engine->get_input_system()->on_press(tektite::mouse::Left);
+        state.engine->get_input_system()->on_press(paper::mouse::Left);
         break;
     case 1:
-        state.engine->get_input_system()->on_press(tektite::mouse::Middle);
+        state.engine->get_input_system()->on_press(paper::mouse::Middle);
         break;
     case 2:
-        state.engine->get_input_system()->on_press(tektite::mouse::Right);
+        state.engine->get_input_system()->on_press(paper::mouse::Right);
         break;
     default:
-        state.engine->get_input_system()->on_press(tektite::mouse::Unknown);
+        state.engine->get_input_system()->on_press(paper::mouse::Unknown);
         break;
     }
     return false;
@@ -58,16 +58,16 @@ EM_BOOL mouse_up_event(int eventType, const EmscriptenMouseEvent *mouseEvent, vo
 {
     switch (mouseEvent->button) {
     case 0:
-        state.engine->get_input_system()->on_release(tektite::mouse::Left);
+        state.engine->get_input_system()->on_release(paper::mouse::Left);
         break;
     case 1:
-        state.engine->get_input_system()->on_release(tektite::mouse::Middle);
+        state.engine->get_input_system()->on_release(paper::mouse::Middle);
         break;
     case 2:
-        state.engine->get_input_system()->on_release(tektite::mouse::Right);
+        state.engine->get_input_system()->on_release(paper::mouse::Right);
         break;
     default:
-        state.engine->get_input_system()->on_release(tektite::mouse::Unknown);
+        state.engine->get_input_system()->on_release(paper::mouse::Unknown);
         break;
     }
     return false;
@@ -83,7 +83,7 @@ int main(int argc, char **argv)
 {
     state = EmscriptenState();
 
-    emscripten_set_window_title("Tektite");
+    emscripten_set_window_title("Paper");
     emscripten_get_element_css_size("#canvas", &state.width, &state.height);
 
     EmscriptenWebGLContextAttributes attributes = {
@@ -96,7 +96,7 @@ int main(int argc, char **argv)
     state.context = emscripten_webgl_create_context("#canvas", &attributes);
     emscripten_webgl_make_context_current(state.context);
 
-    state.engine = new tektite::Engine();
+    state.engine = new paper::Engine();
     state.engine->get_graphics()->resize(state.width, state.height);
 
     emscripten_set_resize_callback_on_thread(EMSCRIPTEN_EVENT_TARGET_WINDOW, nullptr, false, window_resize_event, 0);
@@ -119,180 +119,180 @@ int main(int argc, char **argv)
     return 0;
 }
 
-tektite::keyboard::Key translate_key(DOM_PK_CODE_TYPE keyCode)
+paper::keyboard::Key translate_key(DOM_PK_CODE_TYPE keyCode)
 {
     switch (keyCode) {
     case DOM_PK_ARROW_UP:
-        return tektite::keyboard::Up;
+        return paper::keyboard::Up;
     case DOM_PK_ARROW_DOWN:
-        return tektite::keyboard::Down;
+        return paper::keyboard::Down;
     case DOM_PK_ARROW_LEFT:
-        return tektite::keyboard::Left;
+        return paper::keyboard::Left;
     case DOM_PK_ARROW_RIGHT:
-        return tektite::keyboard::Right;
+        return paper::keyboard::Right;
     case DOM_PK_ESCAPE:
-        return tektite::keyboard::Escape;
+        return paper::keyboard::Escape;
     case DOM_PK_ENTER:
-        return tektite::keyboard::Enter;
+        return paper::keyboard::Enter;
     case DOM_PK_BACKSPACE:
-        return tektite::keyboard::Backspace;
+        return paper::keyboard::Backspace;
     case DOM_PK_HOME:
-        return tektite::keyboard::Home;
+        return paper::keyboard::Home;
     case DOM_PK_INSERT:
-        return tektite::keyboard::Insert;
+        return paper::keyboard::Insert;
     case DOM_PK_PAGE_UP:
-        return tektite::keyboard::PageUp;
+        return paper::keyboard::PageUp;
     case DOM_PK_PAGE_DOWN:
-        return tektite::keyboard::PageDown;
+        return paper::keyboard::PageDown;
     case DOM_PK_DELETE:
-        return tektite::keyboard::Delete;
+        return paper::keyboard::Delete;
     case DOM_PK_END:
-        return tektite::keyboard::End;
+        return paper::keyboard::End;
     case DOM_PK_PRINT_SCREEN:
-        return tektite::keyboard::PrintScreen;
+        return paper::keyboard::PrintScreen;
     case DOM_PK_PAUSE:
-        return tektite::keyboard::Pause;
+        return paper::keyboard::Pause;
     case DOM_PK_SCROLL_LOCK:
-        return tektite::keyboard::ScrollLock;
+        return paper::keyboard::ScrollLock;
     case DOM_PK_NUM_LOCK:
-        return tektite::keyboard::NumLock;
+        return paper::keyboard::NumLock;
     case DOM_PK_CAPS_LOCK:
-        return tektite::keyboard::CapsLock;
+        return paper::keyboard::CapsLock;
     case DOM_PK_TAB:
-        return tektite::keyboard::Tab;
+        return paper::keyboard::Tab;
     case DOM_PK_BACKSLASH:
-        return tektite::keyboard::Backslash;
+        return paper::keyboard::Backslash;
     case DOM_PK_SPACE:
-        return tektite::keyboard::Space;
+        return paper::keyboard::Space;
     case DOM_PK_SHIFT_LEFT:
-        return tektite::keyboard::LeftShift;
+        return paper::keyboard::LeftShift;
     case DOM_PK_SHIFT_RIGHT:
-        return tektite::keyboard::RightShift;
+        return paper::keyboard::RightShift;
     case DOM_PK_CONTROL_LEFT:
-        return tektite::keyboard::LeftCtrl;
+        return paper::keyboard::LeftCtrl;
     case DOM_PK_CONTROL_RIGHT:
-        return tektite::keyboard::RightCtrl;
+        return paper::keyboard::RightCtrl;
     case DOM_PK_ALT_LEFT:
-        return tektite::keyboard::LeftAlt;
+        return paper::keyboard::LeftAlt;
     case DOM_PK_ALT_RIGHT:
-        return tektite::keyboard::RightAlt;
+        return paper::keyboard::RightAlt;
     case DOM_PK_NUMPAD_0:
-        return tektite::keyboard::Numpad0;
+        return paper::keyboard::Numpad0;
     case DOM_PK_NUMPAD_1:
-        return tektite::keyboard::Numpad1;
+        return paper::keyboard::Numpad1;
     case DOM_PK_NUMPAD_2:
-        return tektite::keyboard::Numpad2;
+        return paper::keyboard::Numpad2;
     case DOM_PK_NUMPAD_3:
-        return tektite::keyboard::Numpad3;
+        return paper::keyboard::Numpad3;
     case DOM_PK_NUMPAD_4:
-        return tektite::keyboard::Numpad4;
+        return paper::keyboard::Numpad4;
     case DOM_PK_NUMPAD_5:
-        return tektite::keyboard::Numpad5;
+        return paper::keyboard::Numpad5;
     case DOM_PK_NUMPAD_6:
-        return tektite::keyboard::Numpad6;
+        return paper::keyboard::Numpad6;
     case DOM_PK_NUMPAD_7:
-        return tektite::keyboard::Numpad7;
+        return paper::keyboard::Numpad7;
     case DOM_PK_NUMPAD_8:
-        return tektite::keyboard::Numpad8;
+        return paper::keyboard::Numpad8;
     case DOM_PK_NUMPAD_9:
-        return tektite::keyboard::Numpad9;
+        return paper::keyboard::Numpad9;
     case DOM_PK_A:
-        return tektite::keyboard::A;
+        return paper::keyboard::A;
     case DOM_PK_B:
-        return tektite::keyboard::B;
+        return paper::keyboard::B;
     case DOM_PK_C:
-        return tektite::keyboard::C;
+        return paper::keyboard::C;
     case DOM_PK_D:
-        return tektite::keyboard::D;
+        return paper::keyboard::D;
     case DOM_PK_E:
-        return tektite::keyboard::E;
+        return paper::keyboard::E;
     case DOM_PK_F:
-        return tektite::keyboard::F;
+        return paper::keyboard::F;
     case DOM_PK_G:
-        return tektite::keyboard::G;
+        return paper::keyboard::G;
     case DOM_PK_H:
-        return tektite::keyboard::H;
+        return paper::keyboard::H;
     case DOM_PK_I:
-        return tektite::keyboard::I;
+        return paper::keyboard::I;
     case DOM_PK_J:
-        return tektite::keyboard::J;
+        return paper::keyboard::J;
     case DOM_PK_K:
-        return tektite::keyboard::K;
+        return paper::keyboard::K;
     case DOM_PK_L:
-        return tektite::keyboard::L;
+        return paper::keyboard::L;
     case DOM_PK_M:
-        return tektite::keyboard::M;
+        return paper::keyboard::M;
     case DOM_PK_N:
-        return tektite::keyboard::N;
+        return paper::keyboard::N;
     case DOM_PK_O:
-        return tektite::keyboard::O;
+        return paper::keyboard::O;
     case DOM_PK_P:
-        return tektite::keyboard::P;
+        return paper::keyboard::P;
     case DOM_PK_Q:
-        return tektite::keyboard::Q;
+        return paper::keyboard::Q;
     case DOM_PK_R:
-        return tektite::keyboard::R;
+        return paper::keyboard::R;
     case DOM_PK_S:
-        return tektite::keyboard::S;
+        return paper::keyboard::S;
     case DOM_PK_T:
-        return tektite::keyboard::T;
+        return paper::keyboard::T;
     case DOM_PK_U:
-        return tektite::keyboard::U;
+        return paper::keyboard::U;
     case DOM_PK_V:
-        return tektite::keyboard::V;
+        return paper::keyboard::V;
     case DOM_PK_W:
-        return tektite::keyboard::W;
+        return paper::keyboard::W;
     case DOM_PK_X:
-        return tektite::keyboard::X;
+        return paper::keyboard::X;
     case DOM_PK_Y:
-        return tektite::keyboard::Y;
+        return paper::keyboard::Y;
     case DOM_PK_Z:
-        return tektite::keyboard::Z;
+        return paper::keyboard::Z;
     case DOM_PK_0:
-        return tektite::keyboard::Num0;
+        return paper::keyboard::Num0;
     case DOM_PK_1:
-        return tektite::keyboard::Num1;
+        return paper::keyboard::Num1;
     case DOM_PK_2:
-        return tektite::keyboard::Num2;
+        return paper::keyboard::Num2;
     case DOM_PK_3:
-        return tektite::keyboard::Num3;
+        return paper::keyboard::Num3;
     case DOM_PK_4:
-        return tektite::keyboard::Num4;
+        return paper::keyboard::Num4;
     case DOM_PK_5:
-        return tektite::keyboard::Num5;
+        return paper::keyboard::Num5;
     case DOM_PK_6:
-        return tektite::keyboard::Num6;
+        return paper::keyboard::Num6;
     case DOM_PK_7:
-        return tektite::keyboard::Num7;
+        return paper::keyboard::Num7;
     case DOM_PK_8:
-        return tektite::keyboard::Num8;
+        return paper::keyboard::Num8;
     case DOM_PK_9:
-        return tektite::keyboard::Num9;
+        return paper::keyboard::Num9;
     case DOM_PK_F1:
-        return tektite::keyboard::F1;
+        return paper::keyboard::F1;
     case DOM_PK_F2:
-        return tektite::keyboard::F2;
+        return paper::keyboard::F2;
     case DOM_PK_F3:
-        return tektite::keyboard::F3;
+        return paper::keyboard::F3;
     case DOM_PK_F4:
-        return tektite::keyboard::F4;
+        return paper::keyboard::F4;
     case DOM_PK_F5:
-        return tektite::keyboard::F5;
+        return paper::keyboard::F5;
     case DOM_PK_F6:
-        return tektite::keyboard::F6;
+        return paper::keyboard::F6;
     case DOM_PK_F7:
-        return tektite::keyboard::F7;
+        return paper::keyboard::F7;
     case DOM_PK_F8:
-        return tektite::keyboard::F8;
+        return paper::keyboard::F8;
     case DOM_PK_F9:
-        return tektite::keyboard::F9;
+        return paper::keyboard::F9;
     case DOM_PK_F10:
-        return tektite::keyboard::F10;
+        return paper::keyboard::F10;
     case DOM_PK_F11:
-        return tektite::keyboard::F11;
+        return paper::keyboard::F11;
     case DOM_PK_F12:
-        return tektite::keyboard::F12;
+        return paper::keyboard::F12;
     }
 
-    return tektite::keyboard::Unknown;
+    return paper::keyboard::Unknown;
 }

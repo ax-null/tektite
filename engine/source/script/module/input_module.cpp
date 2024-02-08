@@ -1,8 +1,9 @@
 #include <engine/input/input_system.hpp>
 #include <engine/script/script_engine.hpp>
 
-namespace tektite
+namespace paper
 {
+
     const luaL_Reg functions[] = {
         { "is_key_down", [](lua_State *L) {
              uint32_t key = static_cast<uint32_t>(lua_tonumber(L, -1));
@@ -190,4 +191,4 @@ namespace tektite
         )");
     }
 
-} // namespace tektite
+} // namespace paper

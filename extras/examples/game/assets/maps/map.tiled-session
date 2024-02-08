@@ -1,12 +1,8 @@
 {
-    "Map/SizeTest": {
-        "height": 4300,
-        "width": 2
-    },
     "activeFile": "test_map.json",
     "expandedProjectPaths": [
-        "assets",
         "assets/maps",
+        "assets",
         "."
     ],
     "fileStates": {
@@ -34,11 +30,11 @@
             "scaleInEditor": 1
         },
         "test_map.json": {
-            "scale": 0.33,
+            "scale": 0.5,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 612.1212121212121,
-                "y": 509.0909090909091
+                "x": 620,
+                "y": 535
             }
         },
         "test_map.json#tileset": {
@@ -46,25 +42,11 @@
             "scaleInEditor": 1
         }
     },
-    "last.executablePath": "D:/Dev/Private/Tektite/build/runtime/windows/tektite_windows.exe",
-    "last.exportedFilePath": "D:/Dev/Private/Tektite/assets/maps",
-    "last.imagePath": "D:/Dev/Private/Tektite/assets/textures",
-    "last.objectTemplatePath": "D:/Dev/Private/Tektite/assets/maps",
-    "last.workingDirectory": "D:/Dev/Private/Tektite",
-    "map.fixedSize": false,
-    "map.lastUsedExportFilter": "JSON map files [Tiled 1.1] (*.json)",
-    "map.lastUsedFormat": "json",
-    "map.renderOrder": null,
     "openFiles": [
         "test_map.json"
     ],
     "project": "map.tiled-project",
-    "property.type": "bool",
     "recentFiles": [
-        "test_map.json",
-        "castle_floor_1.json",
-        "assets/maps/castle_floor_1.json"
-    ],
-    "resizeMap.removeObjects": false,
-    "tileset.embedInMap": true
+        "test_map.json"
+    ]
 }

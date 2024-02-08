@@ -7,8 +7,9 @@
 #include <string>
 #include <vector>
 
-namespace tektite
+namespace paper
 {
+
     struct EntityData
     {
         uint32_t tag;
@@ -49,4 +50,4 @@ namespace tektite
         std::unique_ptr<Texture> m_tileset;
     };
 
-} // namespace tektite
+} // namespace paper

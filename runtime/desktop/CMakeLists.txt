@@ -1,9 +1,9 @@
-add_executable(tektite_desktop
+add_executable(paper_desktop
     "source/main.cpp"
-    $<$<PLATFORM_ID:Windows>:win32_resources.rc>
+    $<$<PLATFORM_ID:Windows>:windows_resources.rc>
 )
 
-target_include_directories(tektite_desktop PRIVATE "source")
-target_link_libraries(tektite_desktop PRIVATE
-    tektite_engine glfw
+target_include_directories(paper_desktop PRIVATE "source")
+target_link_libraries(paper_desktop PRIVATE
+    paper_engine glfw
 )

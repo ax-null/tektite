@@ -8,8 +8,9 @@
 #include <string>
 #include <vector>
 
-namespace tektite
+namespace paper
 {
+
     class Entity
     {
       public:
@@ -58,4 +59,4 @@ namespace tektite
         float m_x, m_y, m_width, m_height;
     };
 
-} // namespace tektite
+} // namespace paper

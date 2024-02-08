@@ -30,15 +30,15 @@
     m_indices[m_index_count++] = i4 + m_vertex_index; \
     m_indices[m_index_count++] = i5 + m_vertex_index;
 
-#define CHECK(mode, texture, vertex_count, index_count) \
-    if (m_mode != mode || m_texture != texture ||             \
-        m_vertex_count + vertex_count >= VERTEX_COUNT ||         \
-        m_index_count + index_count >= INDEX_COUNT)              \
-        submit();                                                   \
-    m_mode = mode;                                               \
+#define CHECK(mode, texture, vertex_count, index_count)  \
+    if (m_mode != mode || m_texture != texture ||        \
+        m_vertex_count + vertex_count >= VERTEX_COUNT || \
+        m_index_count + index_count >= INDEX_COUNT)      \
+        submit();                                        \
+    m_mode = mode;                                       \
     m_texture = texture;
 
-namespace tektite
+namespace paper
 {
 
     Graphics::Graphics(uint32_t width, uint32_t height)
@@ -379,4 +379,4 @@ namespace tektite
         }
     }
 
-} // namespace tektite
+} // namespace paper

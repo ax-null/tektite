@@ -4,7 +4,7 @@
 
 #include <new>
 
-namespace tektite
+namespace paper
 {
 
     class LuaEntity : public Entity
@@ -213,4 +213,5 @@ namespace tektite
         lua_pushcfunction(L, index);
         lua_setfield(L, -2, "__index");
     }
-} // namespace tektite
+
+} // namespace paper

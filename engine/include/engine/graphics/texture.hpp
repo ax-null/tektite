@@ -2,7 +2,7 @@
 
 #include <cstdint>
 
-namespace tektite
+namespace paper
 {
 
     class Texture
@@ -19,4 +19,4 @@ namespace tektite
         uint32_t m_handle, m_width, m_height;
     };
 
-} // namespace tektite
+} // namespace paper

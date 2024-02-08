@@ -1,8 +1,9 @@
 #include <engine/graphics/graphics.hpp>
 #include <engine/script/script_engine.hpp>
 
-namespace tektite
+namespace paper
 {
+
     static const luaL_Reg functions[] = {
         { "clear", [](lua_State *L) {
              float red = static_cast<float>(lua_tonumber(L, -4));
@@ -152,4 +153,4 @@ namespace tektite
         lua_setglobal(L, "graphics");
     }
 
-} // namespace tektite
+} // namespace paper

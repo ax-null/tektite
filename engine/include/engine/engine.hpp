@@ -8,8 +8,9 @@
 #include "script/script_engine.hpp"
 #include "world/world.hpp"
 
-namespace tektite
+namespace paper
 {
+
     class Engine
     {
       public:
@@ -34,4 +35,4 @@ namespace tektite
         bool m_running;
     };
 
-} // namespace tektite
+} // namespace paper

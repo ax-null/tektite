@@ -4,8 +4,9 @@
 #include <glm/ext/matrix_transform.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
-namespace tektite
+namespace paper
 {
+
     Camera::Camera()
     {
         m_transform = glm::identity<glm::mat4>();
@@ -26,4 +27,4 @@ namespace tektite
         m_y = glm::clamp(m_y, y, y + height);
     }
 
-} // namespace tektite
+} // namespace paper

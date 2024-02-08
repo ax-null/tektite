@@ -3,8 +3,9 @@
 
 #include <new>
 
-namespace tektite
+namespace paper
 {
+
     static const luaL_Reg functions[] = {
         { "new", [](lua_State *L) {
              const char *path = lua_tostring(L, -1);
@@ -40,4 +41,5 @@ namespace tektite
         lua_pushvalue(L, table_index);
         lua_setfield(L, -2, "__index");
     }
-} // namespace tektite
+
+} // namespace paper

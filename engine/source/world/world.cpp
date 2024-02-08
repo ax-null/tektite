@@ -4,8 +4,9 @@
 
 #include <cstdint>
 
-namespace tektite
+namespace paper
 {
+
     void World::update()
     {
         for (uint32_t i = 0; i < m_entities.size(); ++i)
@@ -27,17 +28,17 @@ namespace tektite
             m_entities[i]->render();
     }
 
-    void World::load_map(const char *tileMapPath)
+    void World::load_map(const char *path)
     {
-        m_tilemap = std::make_unique<TileMap>(tileMapPath);
+        m_tilemap = std::make_unique<TileMap>(path);
 
-        float yDown = m_tilemap->get_tile_height() * m_tilemap->get_size_y();
+        float y_down = m_tilemap->get_tile_height() * m_tilemap->get_size_y();
 
         for (EntityData entity : m_tilemap->get_entities()) {
             lua_pushnumber(m_script_engine->get_state(), entity.tag);
             lua_pushstring(m_script_engine->get_state(), entity.name.c_str());
             lua_pushnumber(m_script_engine->get_state(), entity.x);
-            lua_pushnumber(m_script_engine->get_state(), yDown - (entity.y + entity.height));
+            lua_pushnumber(m_script_engine->get_state(), y_down - (entity.y + entity.height));
             lua_pushnumber(m_script_engine->get_state(), entity.width);
             lua_pushnumber(m_script_engine->get_state(), entity.height);
             lua_pushlightuserdata(m_script_engine->get_state(), this);
@@ -60,4 +61,4 @@ namespace tektite
         return m_tagged;
     }
 
-} // namespace tektite
+} // namespace paper

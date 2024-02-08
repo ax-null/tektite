@@ -1,7 +1,7 @@
 #include <engine/world/entity.hpp>
 #include <engine/world/world.hpp>
 
-namespace tektite
+namespace paper
 {
 
     Entity::Entity(uint32_t tag, const char *name, float x, float y, float width, float height, World *world)
@@ -42,4 +42,4 @@ namespace tektite
         return nullptr;
     }
 
-} // namespace tektite
+} // namespace paper

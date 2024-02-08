@@ -3,7 +3,7 @@
 #include <fstream>
 #include <json/json.h>
 
-namespace tektite
+namespace paper
 {
 
     TileMap::TileMap(const char *path)
@@ -80,4 +80,4 @@ namespace tektite
         delete[] m_background.data;
     }
 
-} // namespace tektite
+} // namespace paper

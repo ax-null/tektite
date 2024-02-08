@@ -3,10 +3,10 @@
 #include "../third_party/miniaudio.h"
 #include <stdio.h>
 
-namespace tektite
+namespace paper
 {
 
-    static ma_engine engine;
+    ma_engine engine;
 
     AudioEngine::AudioEngine()
     {
@@ -24,4 +24,4 @@ namespace tektite
         ma_engine_play_sound(&engine, path, NULL);
     }
 
-} // namespace tektite
+} // namespace paper

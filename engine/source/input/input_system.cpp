@@ -1,6 +1,6 @@
 #include <engine/input/input_system.hpp>
 
-namespace tektite
+namespace paper
 {
 
     void InputSystem::update()
@@ -103,4 +103,4 @@ namespace tektite
         return m_curr_mouse.buttons[button_index] && m_prev_mouse.buttons[button_index];
     }
 
-} // namespace tektite
+} // namespace paper

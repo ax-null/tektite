@@ -11,10 +11,10 @@ struct DesktopState
 {
     GLFWwindow *window;
     int32_t width, height;
-    tektite::Engine *engine;
+    paper::Engine *engine;
 } static state;
 
-tektite::keyboard::Key translate_key(int keyCode);
+paper::keyboard::Key translate_key(int keyCode);
 
 void error_callback(int error, const char *description)
 {
@@ -37,20 +37,20 @@ void key_callback(GLFWwindow *window, int key, int scancode, int action, int mod
 
 void mouse_button_callback(GLFWwindow *window, int button, int action, int mods)
 {
-    tektite::mouse::Button mouse_button;
+    paper::mouse::Button mouse_button;
 
     switch (button) {
     case GLFW_MOUSE_BUTTON_LEFT:
-        mouse_button = tektite::mouse::Left;
+        mouse_button = paper::mouse::Left;
         break;
     case GLFW_MOUSE_BUTTON_MIDDLE:
-        mouse_button = tektite::mouse::Middle;
+        mouse_button = paper::mouse::Middle;
         break;
     case GLFW_MOUSE_BUTTON_RIGHT:
-        mouse_button = tektite::mouse::Right;
+        mouse_button = paper::mouse::Right;
         break;
     default:
-        mouse_button = tektite::mouse::Unknown;
+        mouse_button = paper::mouse::Unknown;
     }
 
     if (action == GLFW_PRESS)
@@ -79,7 +79,7 @@ int main(int argc, char **argv)
 
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 2);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
-    state.window = glfwCreateWindow(state.width, state.height, "Tektite", nullptr, nullptr);
+    state.window = glfwCreateWindow(state.width, state.height, "Paper", nullptr, nullptr);
 
     if (!state.window) {
         printf("Couldn't create window.\n");
@@ -102,7 +102,7 @@ int main(int argc, char **argv)
 
     gladLoadGL(glfwGetProcAddress);
 
-    state.engine = new tektite::Engine();
+    state.engine = new paper::Engine();
     state.engine->get_graphics()->resize(800, 600);
 
     while (state.engine->is_running() && !glfwWindowShouldClose(state.window)) {
@@ -120,180 +120,180 @@ int main(int argc, char **argv)
     return 0;
 }
 
-tektite::keyboard::Key translate_key(int keyCode)
+paper::keyboard::Key translate_key(int keyCode)
 {
     switch (keyCode) {
     case GLFW_KEY_UP:
-        return tektite::keyboard::Up;
+        return paper::keyboard::Up;
     case GLFW_KEY_DOWN:
-        return tektite::keyboard::Down;
+        return paper::keyboard::Down;
     case GLFW_KEY_LEFT:
-        return tektite::keyboard::Left;
+        return paper::keyboard::Left;
     case GLFW_KEY_RIGHT:
-        return tektite::keyboard::Right;
+        return paper::keyboard::Right;
     case GLFW_KEY_ESCAPE:
-        return tektite::keyboard::Escape;
+        return paper::keyboard::Escape;
     case GLFW_KEY_ENTER:
-        return tektite::keyboard::Enter;
+        return paper::keyboard::Enter;
     case GLFW_KEY_BACKSPACE:
-        return tektite::keyboard::Backspace;
+        return paper::keyboard::Backspace;
     case GLFW_KEY_HOME:
-        return tektite::keyboard::Home;
+        return paper::keyboard::Home;
     case GLFW_KEY_INSERT:
-        return tektite::keyboard::Insert;
+        return paper::keyboard::Insert;
     case GLFW_KEY_PAGE_UP:
-        return tektite::keyboard::PageUp;
+        return paper::keyboard::PageUp;
     case GLFW_KEY_PAGE_DOWN:
-        return tektite::keyboard::PageDown;
+        return paper::keyboard::PageDown;
     case GLFW_KEY_DELETE:
-        return tektite::keyboard::Delete;
+        return paper::keyboard::Delete;
     case GLFW_KEY_END:
-        return tektite::keyboard::End;
+        return paper::keyboard::End;
     case GLFW_KEY_PRINT_SCREEN:
-        return tektite::keyboard::PrintScreen;
+        return paper::keyboard::PrintScreen;
     case GLFW_KEY_PAUSE:
-        return tektite::keyboard::Pause;
+        return paper::keyboard::Pause;
     case GLFW_KEY_SCROLL_LOCK:
-        return tektite::keyboard::ScrollLock;
+        return paper::keyboard::ScrollLock;
     case GLFW_KEY_NUM_LOCK:
-        return tektite::keyboard::NumLock;
+        return paper::keyboard::NumLock;
     case GLFW_KEY_CAPS_LOCK:
-        return tektite::keyboard::CapsLock;
+        return paper::keyboard::CapsLock;
     case GLFW_KEY_TAB:
-        return tektite::keyboard::Tab;
+        return paper::keyboard::Tab;
     case GLFW_KEY_BACKSLASH:
-        return tektite::keyboard::Backslash;
+        return paper::keyboard::Backslash;
     case GLFW_KEY_SPACE:
-        return tektite::keyboard::Space;
+        return paper::keyboard::Space;
     case GLFW_KEY_LEFT_SHIFT:
-        return tektite::keyboard::LeftShift;
+        return paper::keyboard::LeftShift;
     case GLFW_KEY_RIGHT_SHIFT:
-        return tektite::keyboard::RightShift;
+        return paper::keyboard::RightShift;
     case GLFW_KEY_LEFT_CONTROL:
-        return tektite::keyboard::LeftCtrl;
+        return paper::keyboard::LeftCtrl;
     case GLFW_KEY_RIGHT_CONTROL:
-        return tektite::keyboard::RightCtrl;
+        return paper::keyboard::RightCtrl;
     case GLFW_KEY_LEFT_ALT:
-        return tektite::keyboard::LeftAlt;
+        return paper::keyboard::LeftAlt;
     case GLFW_KEY_RIGHT_ALT:
-        return tektite::keyboard::RightAlt;
+        return paper::keyboard::RightAlt;
     case GLFW_KEY_KP_0:
-        return tektite::keyboard::Numpad0;
+        return paper::keyboard::Numpad0;
     case GLFW_KEY_KP_1:
-        return tektite::keyboard::Numpad1;
+        return paper::keyboard::Numpad1;
     case GLFW_KEY_KP_2:
-        return tektite::keyboard::Numpad2;
+        return paper::keyboard::Numpad2;
     case GLFW_KEY_KP_3:
-        return tektite::keyboard::Numpad3;
+        return paper::keyboard::Numpad3;
     case GLFW_KEY_KP_4:
-        return tektite::keyboard::Numpad4;
+        return paper::keyboard::Numpad4;
     case GLFW_KEY_KP_5:
-        return tektite::keyboard::Numpad5;
+        return paper::keyboard::Numpad5;
     case GLFW_KEY_KP_6:
-        return tektite::keyboard::Numpad6;
+        return paper::keyboard::Numpad6;
     case GLFW_KEY_KP_7:
-        return tektite::keyboard::Numpad7;
+        return paper::keyboard::Numpad7;
     case GLFW_KEY_KP_8:
-        return tektite::keyboard::Numpad8;
+        return paper::keyboard::Numpad8;
     case GLFW_KEY_KP_9:
-        return tektite::keyboard::Numpad9;
+        return paper::keyboard::Numpad9;
     case GLFW_KEY_A:
-        return tektite::keyboard::A;
+        return paper::keyboard::A;
     case GLFW_KEY_B:
-        return tektite::keyboard::B;
+        return paper::keyboard::B;
     case GLFW_KEY_C:
-        return tektite::keyboard::C;
+        return paper::keyboard::C;
     case GLFW_KEY_D:
-        return tektite::keyboard::D;
+        return paper::keyboard::D;
     case GLFW_KEY_E:
-        return tektite::keyboard::E;
+        return paper::keyboard::E;
     case GLFW_KEY_F:
-        return tektite::keyboard::F;
+        return paper::keyboard::F;
     case GLFW_KEY_G:
-        return tektite::keyboard::G;
+        return paper::keyboard::G;
     case GLFW_KEY_H:
-        return tektite::keyboard::H;
+        return paper::keyboard::H;
     case GLFW_KEY_I:
-        return tektite::keyboard::I;
+        return paper::keyboard::I;
     case GLFW_KEY_J:
-        return tektite::keyboard::J;
+        return paper::keyboard::J;
     case GLFW_KEY_K:
-        return tektite::keyboard::K;
+        return paper::keyboard::K;
     case GLFW_KEY_L:
-        return tektite::keyboard::L;
+        return paper::keyboard::L;
     case GLFW_KEY_M:
-        return tektite::keyboard::M;
+        return paper::keyboard::M;
     case GLFW_KEY_N:
-        return tektite::keyboard::N;
+        return paper::keyboard::N;
     case GLFW_KEY_O:
-        return tektite::keyboard::O;
+        return paper::keyboard::O;
     case GLFW_KEY_P:
-        return tektite::keyboard::P;
+        return paper::keyboard::P;
     case GLFW_KEY_Q:
-        return tektite::keyboard::Q;
+        return paper::keyboard::Q;
     case GLFW_KEY_R:
-        return tektite::keyboard::R;
+        return paper::keyboard::R;
     case GLFW_KEY_S:
-        return tektite::keyboard::S;
+        return paper::keyboard::S;
     case GLFW_KEY_T:
-        return tektite::keyboard::T;
+        return paper::keyboard::T;
     case GLFW_KEY_U:
-        return tektite::keyboard::U;
+        return paper::keyboard::U;
     case GLFW_KEY_V:
-        return tektite::keyboard::V;
+        return paper::keyboard::V;
     case GLFW_KEY_W:
-        return tektite::keyboard::W;
+        return paper::keyboard::W;
     case GLFW_KEY_X:
-        return tektite::keyboard::X;
+        return paper::keyboard::X;
     case GLFW_KEY_Y:
-        return tektite::keyboard::Y;
+        return paper::keyboard::Y;
     case GLFW_KEY_Z:
-        return tektite::keyboard::Z;
+        return paper::keyboard::Z;
     case GLFW_KEY_0:
-        return tektite::keyboard::Num0;
+        return paper::keyboard::Num0;
     case GLFW_KEY_1:
-        return tektite::keyboard::Num1;
+        return paper::keyboard::Num1;
     case GLFW_KEY_2:
-        return tektite::keyboard::Num2;
+        return paper::keyboard::Num2;
     case GLFW_KEY_3:
-        return tektite::keyboard::Num3;
+        return paper::keyboard::Num3;
     case GLFW_KEY_4:
-        return tektite::keyboard::Num4;
+        return paper::keyboard::Num4;
     case GLFW_KEY_5:
-        return tektite::keyboard::Num5;
+        return paper::keyboard::Num5;
     case GLFW_KEY_6:
-        return tektite::keyboard::Num6;
+        return paper::keyboard::Num6;
     case GLFW_KEY_7:
-        return tektite::keyboard::Num7;
+        return paper::keyboard::Num7;
     case GLFW_KEY_8:
-        return tektite::keyboard::Num8;
+        return paper::keyboard::Num8;
     case GLFW_KEY_9:
-        return tektite::keyboard::Num9;
+        return paper::keyboard::Num9;
     case GLFW_KEY_F1:
-        return tektite::keyboard::F1;
+        return paper::keyboard::F1;
     case GLFW_KEY_F2:
-        return tektite::keyboard::F2;
+        return paper::keyboard::F2;
     case GLFW_KEY_F3:
-        return tektite::keyboard::F3;
+        return paper::keyboard::F3;
     case GLFW_KEY_F4:
-        return tektite::keyboard::F4;
+        return paper::keyboard::F4;
     case GLFW_KEY_F5:
-        return tektite::keyboard::F5;
+        return paper::keyboard::F5;
     case GLFW_KEY_F6:
-        return tektite::keyboard::F6;
+        return paper::keyboard::F6;
     case GLFW_KEY_F7:
-        return tektite::keyboard::F7;
+        return paper::keyboard::F7;
     case GLFW_KEY_F8:
-        return tektite::keyboard::F8;
+        return paper::keyboard::F8;
     case GLFW_KEY_F9:
-        return tektite::keyboard::F9;
+        return paper::keyboard::F9;
     case GLFW_KEY_F10:
-        return tektite::keyboard::F10;
+        return paper::keyboard::F10;
     case GLFW_KEY_F11:
-        return tektite::keyboard::F11;
+        return paper::keyboard::F11;
     case GLFW_KEY_F12:
-        return tektite::keyboard::F12;
+        return paper::keyboard::F12;
     }
 
-    return tektite::keyboard::Unknown;
+    return paper::keyboard::Unknown;
 }

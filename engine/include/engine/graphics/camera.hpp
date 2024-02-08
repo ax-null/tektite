@@ -3,7 +3,7 @@
 #include <cstdlib>
 #include <glm/glm.hpp>
 
-namespace tektite
+namespace paper
 {
 
     class Camera
@@ -54,4 +54,4 @@ namespace tektite
         float m_x, m_y, m_zoom, m_rotation, m_shake_x, m_shake_y;
         glm::mat4 m_transform;
     };
-} // namespace tektite
+} // namespace paper

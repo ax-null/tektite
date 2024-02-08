@@ -3,7 +3,7 @@
 
 #include <string>
 
-namespace tektite
+namespace paper
 {
 
     Engine::Engine()
@@ -65,4 +65,4 @@ namespace tektite
         m_graphics->submit();
     }
 
-} // namespace tektite
+} // namespace paper

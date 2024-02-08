@@ -1,6 +1,6 @@
 #include <engine/script/script_engine.hpp>
 
-namespace tektite
+namespace paper
 {
 
     ScriptEngine::ScriptEngine()
@@ -48,4 +48,4 @@ namespace tektite
             printf("Error: %s!\n", lua_tostring(m_state, -1));
     }
 
-} // namespace tektite
+} // namespace paper

@@ -1,6 +1,6 @@
 #pragma once
 
-namespace tektite
+namespace paper
 {
 
     class AudioEngine
@@ -12,4 +12,4 @@ namespace tektite
         void play_sound(const char *path);
     };
 
-} // namespace tektite
+} // namespace paper

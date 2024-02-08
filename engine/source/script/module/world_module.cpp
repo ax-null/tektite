@@ -1,7 +1,8 @@
 #include <engine/script/script_engine.hpp>
 
-namespace tektite
+namespace paper
 {
+
     const luaL_Reg functions[] = {
         { "_", [](lua_State *L) {
              const char *path = static_cast<const char *>(lua_tostring(L, -1));
@@ -22,4 +23,4 @@ namespace tektite
         lua_setglobal(L, "world");
     }
 
-} // namespace tektite
+} // namespace paper

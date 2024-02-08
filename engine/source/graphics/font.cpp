@@ -1,8 +1,9 @@
 #include <engine/graphics/font.hpp>
 #include <fstream>
 
-namespace tektite
+namespace paper
 {
+
     Font::Font(const char *path)
     {
         std::string name;
@@ -88,4 +89,4 @@ namespace tektite
             return kerning->second;
     }
 
-} // namespace tektite
+} // namespace paper

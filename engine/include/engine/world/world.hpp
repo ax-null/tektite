@@ -7,13 +7,15 @@
 
 #include <vector>
 
-namespace tektite
+namespace paper
 {
+
     class Entity;
+
     class World
     {
       public:
-        World(ScriptEngine *scripter) : m_script_engine(scripter) {}
+        World(ScriptEngine *script) : m_script_engine(script) {}
         ~World() = default;
 
         void update();
@@ -35,4 +37,4 @@ namespace tektite
         ScriptEngine *m_script_engine;
     };
 
-} // namespace tektite
+} // namespace paper
