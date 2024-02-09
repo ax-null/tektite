@@ -1,27 +1,24 @@
 #include <engine/audio/audio_engine.hpp>
 
-#include "../third_party/miniaudio.h"
 #include <stdio.h>
 
 namespace paper
 {
 
-    ma_engine engine;
-
     AudioEngine::AudioEngine()
     {
-        if (ma_engine_init(NULL, &engine) != MA_SUCCESS)
+        if (ma_engine_init(NULL, &m_engine) != MA_SUCCESS)
             printf("Couldn't initialize audio engine.");
     }
 
     AudioEngine::~AudioEngine()
     {
-        ma_engine_uninit(&engine);
+        ma_engine_uninit(&m_engine);
     }
 
     void AudioEngine::play_sound(const char *path)
     {
-        ma_engine_play_sound(&engine, path, NULL);
+        ma_engine_play_sound(&m_engine, path, NULL);
     }
 
 } // namespace paper

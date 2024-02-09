@@ -19,8 +19,6 @@ add_library(paper_engine STATIC
 
     "source/script/script_engine.cpp"
 
-    "source/third_party/miniaudio.c"
-    
     "source/world/entity.cpp"
     "source/world/tilemap.cpp"
     "source/world/world.cpp"
@@ -30,5 +28,5 @@ add_library(paper_engine STATIC
 
 target_include_directories(paper_engine PUBLIC "include" PRIVATE "source")
 target_link_libraries(paper_engine PUBLIC 
-    glm lua jsoncpp_static $<$<BOOL:${PLATFORM_DESKTOP}>:glad>
+    glm $<$<BOOL:${PLATFORM_DESKTOP}>:glad> jsoncpp_static lua miniaudio stb 
 )

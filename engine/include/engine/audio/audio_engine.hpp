@@ -1,5 +1,7 @@
 #pragma once
 
+#include <miniaudio.h>
+
 namespace paper
 {
 
@@ -10,6 +12,9 @@ namespace paper
         ~AudioEngine();
 
         void play_sound(const char *path);
+
+      private:
+        ma_engine m_engine;
     };
 
 } // namespace paper
