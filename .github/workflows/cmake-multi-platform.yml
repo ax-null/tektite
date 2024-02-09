@@ -42,6 +42,10 @@ jobs:
             c_compiler: gcc
 
     steps:
+    - uses: actions/checkout@v3
+      with:
+        submodules: recursive
+    
     - name: Install required packages
       shell: bash
       run: |
