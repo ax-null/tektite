@@ -8,12 +8,12 @@ BEGIN
     BEGIN
       VALUE "CompanyName", "AX"
       VALUE "FileDescription", "Paper's desktop runtime."
-      VALUE "FileVersion", "0.0.1a"
+      VALUE "FileVersion", "0.2"
       VALUE "InternalName", "paper_desktop"
       VALUE "LegalCopyright", "(C) 2024 AX"
       VALUE "OriginalFilename", "paper_desktop.exe"
       VALUE "ProductName", "Paper Desktop"
-      VALUE "ProductVersion", "0.0.1a"
+      VALUE "ProductVersion", "0.2"
     END
   END
   BLOCK "VarFileInfo"

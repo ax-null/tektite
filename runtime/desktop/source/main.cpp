@@ -1,17 +1,24 @@
 #include <engine/engine.hpp>
 
-#include <stdio.h>
-
 #define GLFW_INCLUDE_NONE
 #include <GLFW/glfw3.h>
-
 #include <glad/gl.h>
+
+#ifdef _WIN32
+#define WIN32_LEAN_AND_MEAN
+#define NOMINMAX
+#include <Windows.h>
+#elif _POSIX_C_SOURCE >= 199309L
+#include <unistd.h>
+#endif
 
 struct DesktopState
 {
+    paper::Engine *engine;
+    paper::time::nano current_time;
+
     GLFWwindow *window;
     int32_t width, height;
-    paper::Engine *engine;
 } static state;
 
 paper::keyboard::Key translate_key(int keyCode);
@@ -98,18 +105,25 @@ int main(int argc, char **argv)
     glfwSetCursorPosCallback(state.window, cursor_position_callback);
 
     glfwMakeContextCurrent(state.window);
-    glfwSwapInterval(1);
-
     gladLoadGL(glfwGetProcAddress);
 
     state.engine = new paper::Engine();
-    state.engine->get_graphics()->resize(800, 600);
+    state.engine->get_graphics()->resize(state.width, state.height);
 
     while (state.engine->is_running() && !glfwWindowShouldClose(state.window)) {
         glfwPollEvents();
 
-        state.engine->run();
+        state.current_time = paper::time::from_seconds(glfwGetTime());
+        state.engine->run(state.current_time);
+
+        glfwSwapInterval(state.engine->is_vsync_enabled());
         glfwSwapBuffers(state.window);
+
+#ifdef _WIN32
+        Sleep(paper::time::to_milliseconds(state.engine->get_sleep_time()));
+#elif _POSIX_C_SOURCE >= 199309L
+        usleep(paper::time::to_milliseconds(state.engine->get_sleep_time()) * 1000);
+#endif
     }
 
     delete state.engine;

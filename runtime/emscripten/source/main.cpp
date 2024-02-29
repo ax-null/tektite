@@ -6,17 +6,18 @@
 
 struct EmscriptenState
 {
-    EMSCRIPTEN_WEBGL_CONTEXT_HANDLE context;
-
-    double width, height;
     paper::Engine *engine;
+    paper::time::nano current_time;
+
+    EMSCRIPTEN_WEBGL_CONTEXT_HANDLE context;
+    int32_t width, height;
 } static state;
 
 paper::keyboard::Key translate_key(DOM_PK_CODE_TYPE keyCode);
 
 EM_BOOL window_resize_event(int eventType, const EmscriptenUiEvent *uiEvent, void *userData)
 {
-    emscripten_get_element_css_size("#canvas", &state.width, &state.height);
+    emscripten_get_canvas_element_size("#canvas", &state.width, &state.height);
     state.engine->get_graphics()->resize(state.width, state.height);
     return false;
 }
@@ -84,7 +85,7 @@ int main(int argc, char **argv)
     state = EmscriptenState();
 
     emscripten_set_window_title("Paper");
-    emscripten_get_element_css_size("#canvas", &state.width, &state.height);
+    emscripten_get_canvas_element_size("#canvas", &state.width, &state.height);
 
     EmscriptenWebGLContextAttributes attributes = {
         true, true, true, true, true, true,
@@ -107,8 +108,11 @@ int main(int argc, char **argv)
     emscripten_set_mousemove_callback_on_thread("#canvas", nullptr, false, mouse_move_event, 0);
 
     auto loop = []() {
-        state.engine->run();
+        state.current_time = paper::time::from_milliseconds(emscripten_performance_now());
+        state.engine->run(state.current_time);
+
         emscripten_webgl_commit_frame();
+        emscripten_sleep(paper::time::to_milliseconds(state.engine->get_sleep_time()));
     };
 
     emscripten_set_main_loop(loop, 0, true);
