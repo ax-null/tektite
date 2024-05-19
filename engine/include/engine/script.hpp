@@ -9,22 +9,22 @@ extern "C" {
 namespace paper
 {
 
-    class AudioEngine;
+    class Audio;
     class Graphics;
-    class InputSystem;
+    class Input;
     class World;
 
-    namespace module
+    namespace modules
     {
 
-        void initialize_audio_engine(lua_State *L, AudioEngine *audio);
+        void initialize_audio(lua_State *L, Audio *audio);
         void initialize_graphics(lua_State *L, Graphics *graphics);
-        void initialize_input_system(lua_State *L, InputSystem *input);
+        void initialize_input(lua_State *L, Input *input);
         void initialize_world(lua_State *L, World *world);
 
     } // namespace module
 
-    namespace object
+    namespace objects
     {
 
         void define_entity(lua_State *L);
@@ -33,15 +33,15 @@ namespace paper
 
     } // namespace object
 
-    class ScriptEngine
+    class Script
     {
       public:
-        ScriptEngine();
-        ~ScriptEngine();
+        Script();
+        ~Script();
 
-        void initialize_module(AudioEngine *audio);
+        void initialize_module(Audio *audio);
         void initialize_module(Graphics *graphics);
-        void initialize_module(InputSystem *input);
+        void initialize_module(Input *input);
         void initialize_module(World *world);
 
         void define_objects();

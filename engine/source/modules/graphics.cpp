@@ -1,5 +1,6 @@
-#include <engine/graphics/graphics.hpp>
-#include <engine/script/script_engine.hpp>
+#include <engine/graphics.hpp>
+
+#include <engine/script.hpp>
 
 namespace paper
 {
@@ -143,7 +144,7 @@ namespace paper
         { nullptr, nullptr }
     };
 
-    void module::initialize_graphics(lua_State *L, Graphics *graphics)
+    void modules::initialize_graphics(lua_State *L, Graphics *graphics)
     {
         lua_newtable(L);
         lua_pushlightuserdata(L, graphics);

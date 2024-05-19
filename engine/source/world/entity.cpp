@@ -1,5 +1,6 @@
 #include <engine/world/entity.hpp>
-#include <engine/world/world.hpp>
+
+#include <engine/world.hpp>
 
 namespace paper
 {

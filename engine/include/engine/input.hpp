@@ -124,11 +124,11 @@ namespace paper
 
     } // namespace mouse
 
-    class InputSystem
+    class Input
     {
       public:
-        InputSystem() = default;
-        ~InputSystem() = default;
+        Input() = default;
+        ~Input() = default;
 
         void update();
 

@@ -1,6 +1,7 @@
-#include <engine/script/script_engine.hpp>
 #include <engine/world/entity.hpp>
-#include <engine/world/world.hpp>
+
+#include <engine/script.hpp>
+#include <engine/world.hpp>
 
 #include <new>
 
@@ -196,7 +197,7 @@ namespace paper
         return 0;
     }
 
-    void object::define_entity(lua_State *L)
+    void objects::define_entity(lua_State *L)
     {
         lua_newtable(L);
         lua_pushvalue(L, -1);

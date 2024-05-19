@@ -1,22 +1,22 @@
-#include <engine/audio/audio_engine.hpp>
+#include <engine/audio.hpp>
 
 #include <stdio.h>
 
 namespace paper
 {
 
-    AudioEngine::AudioEngine()
+    Audio::Audio()
     {
         if (ma_engine_init(NULL, &m_engine) != MA_SUCCESS)
             printf("Couldn't initialize audio engine.");
     }
 
-    AudioEngine::~AudioEngine()
+    Audio::~Audio()
     {
         ma_engine_uninit(&m_engine);
     }
 
-    void AudioEngine::play_sound(const char *path)
+    void Audio::play_sound(const char *path)
     {
         ma_engine_play_sound(&m_engine, path, NULL);
     }

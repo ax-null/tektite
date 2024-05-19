@@ -5,11 +5,11 @@
 namespace paper
 {
 
-    class AudioEngine
+    class Audio
     {
       public:
-        AudioEngine();
-        ~AudioEngine();
+        Audio();
+        ~Audio();
 
         void play_sound(const char *path);
 

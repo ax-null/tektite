@@ -4,11 +4,11 @@
 
 #include "time.hpp"
 
-#include "audio/audio_engine.hpp"
-#include "graphics/graphics.hpp"
-#include "input/input_system.hpp"
-#include "script/script_engine.hpp"
-#include "world/world.hpp"
+#include "audio.hpp"
+#include "graphics.hpp"
+#include "input.hpp"
+#include "script.hpp"
+#include "world.hpp"
 
 namespace paper
 {
@@ -22,7 +22,7 @@ namespace paper
         void run(time::nano current_time);
 
         Graphics *get_graphics() const { return m_graphics.get(); }
-        InputSystem *get_input_system() const { return m_input_system.get(); }
+        Input *get_input() const { return m_input.get(); }
 
         bool is_running() const { return m_running; }
         bool is_vsync_enabled() const { return m_vertical_sync; }
@@ -35,10 +35,10 @@ namespace paper
         void update();
         void render();
 
-        std::unique_ptr<AudioEngine> m_audio_engine;
+        std::unique_ptr<Audio> m_audio;
         std::unique_ptr<Graphics> m_graphics;
-        std::unique_ptr<InputSystem> m_input_system;
-        std::unique_ptr<ScriptEngine> m_script_engine;
+        std::unique_ptr<Input> m_input;
+        std::unique_ptr<Script> m_script;
         std::unique_ptr<World> m_world;
 
         std::unique_ptr<Font> m_font;

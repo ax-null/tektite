@@ -1,8 +1,8 @@
 #pragma once
 
-#include "camera.hpp"
-#include "font.hpp"
-#include "texture.hpp"
+#include "graphics/camera.hpp"
+#include "graphics/font.hpp"
+#include "graphics/texture.hpp"
 
 #include <glm/glm.hpp>
 #include <memory>

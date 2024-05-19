@@ -1,5 +1,6 @@
-#include <engine/input/input_system.hpp>
-#include <engine/script/script_engine.hpp>
+#include <engine/input.hpp>
+
+#include <engine/script.hpp>
 
 namespace paper
 {
@@ -8,7 +9,7 @@ namespace paper
         { "is_key_down", [](lua_State *L) {
              uint32_t key = static_cast<uint32_t>(lua_tonumber(L, -1));
              lua_getupvalue(L, -2, 1);
-             InputSystem *input = (InputSystem *)lua_touserdata(L, -1);
+             Input *input = (Input *)lua_touserdata(L, -1);
              bool result = input->is_down(static_cast<keyboard::Key>(key));
              lua_pushboolean(L, result);
              return 1;
@@ -16,7 +17,7 @@ namespace paper
         { "is_key_pressed", [](lua_State *L) {
              uint32_t key = static_cast<uint32_t>(lua_tonumber(L, -1));
              lua_getupvalue(L, -2, 1);
-             InputSystem *input = (InputSystem *)lua_touserdata(L, -1);
+             Input *input = (Input *)lua_touserdata(L, -1);
              bool result = input->is_pressed(static_cast<keyboard::Key>(key));
              lua_pushboolean(L, result);
              return 1;
@@ -24,7 +25,7 @@ namespace paper
         { "is_key_released", [](lua_State *L) {
              uint32_t key = static_cast<uint32_t>(lua_tonumber(L, -1));
              lua_getupvalue(L, -2, 1);
-             InputSystem *input = (InputSystem *)lua_touserdata(L, -1);
+             Input *input = (Input *)lua_touserdata(L, -1);
              bool result = input->is_released(static_cast<keyboard::Key>(key));
              lua_pushboolean(L, result);
              return 1;
@@ -32,21 +33,21 @@ namespace paper
         { "is_key_held", [](lua_State *L) {
              uint32_t key = static_cast<uint32_t>(lua_tonumber(L, -1));
              lua_getupvalue(L, -2, 1);
-             InputSystem *input = (InputSystem *)lua_touserdata(L, -1);
+             Input *input = (Input *)lua_touserdata(L, -1);
              bool result = input->is_held(static_cast<keyboard::Key>(key));
              lua_pushboolean(L, result);
              return 1;
          } },
         { "get_mouse_position", [](lua_State *L) {
              lua_getupvalue(L, -1, 1);
-             InputSystem *input = (InputSystem *)lua_touserdata(L, -1);
+             Input *input = (Input *)lua_touserdata(L, -1);
              lua_pushnumber(L, input->get_x());
              lua_pushnumber(L, input->get_y());
              return 2;
          } },
         { "get_mouse_delta_position", [](lua_State *L) {
              lua_getupvalue(L, -1, 1);
-             InputSystem *input = (InputSystem *)lua_touserdata(L, -1);
+             Input *input = (Input *)lua_touserdata(L, -1);
              lua_pushnumber(L, input->get_delta_x());
              lua_pushnumber(L, input->get_delta_y());
              return 2;
@@ -54,7 +55,7 @@ namespace paper
         { "is_mouse_button_down", [](lua_State *L) {
              uint32_t button = static_cast<uint32_t>(lua_tonumber(L, -1));
              lua_getupvalue(L, -2, 1);
-             InputSystem *input = (InputSystem *)lua_touserdata(L, -1);
+             Input *input = (Input *)lua_touserdata(L, -1);
              bool result = input->is_down(static_cast<mouse::Button>(button));
              lua_pushboolean(L, result);
              return 1;
@@ -62,7 +63,7 @@ namespace paper
         { "is_mouse_button_pressed", [](lua_State *L) {
              uint32_t button = static_cast<uint32_t>(lua_tonumber(L, -1));
              lua_getupvalue(L, -2, 1);
-             InputSystem *input = (InputSystem *)lua_touserdata(L, -1);
+             Input *input = (Input *)lua_touserdata(L, -1);
              bool result = input->is_pressed(static_cast<mouse::Button>(button));
              lua_pushboolean(L, result);
              return 1;
@@ -70,7 +71,7 @@ namespace paper
         { "is_mouse_button_released", [](lua_State *L) {
              uint32_t button = static_cast<uint32_t>(lua_tonumber(L, -1));
              lua_getupvalue(L, -2, 1);
-             InputSystem *input = (InputSystem *)lua_touserdata(L, -1);
+             Input *input = (Input *)lua_touserdata(L, -1);
              bool result = input->is_released(static_cast<mouse::Button>(button));
              lua_pushboolean(L, result);
              return 1;
@@ -78,7 +79,7 @@ namespace paper
         { "is_mouse_button_held", [](lua_State *L) {
              uint32_t button = static_cast<uint32_t>(lua_tonumber(L, -1));
              lua_getupvalue(L, -2, 1);
-             InputSystem *input = (InputSystem *)lua_touserdata(L, -1);
+             Input *input = (Input *)lua_touserdata(L, -1);
              bool result = input->is_held(static_cast<mouse::Button>(button));
              lua_pushboolean(L, result);
              return 1;
@@ -86,7 +87,7 @@ namespace paper
         { nullptr, nullptr },
     };
 
-    void module::initialize_input_system(lua_State *L, InputSystem *input)
+    void modules::initialize_input(lua_State *L, Input *input)
     {
         lua_newtable(L);
         lua_pushlightuserdata(L, input);

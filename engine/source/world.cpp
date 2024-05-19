@@ -1,6 +1,6 @@
-#include <engine/script/script_engine.hpp>
+#include <engine/script.hpp>
+#include <engine/world.hpp>
 #include <engine/world/entity.hpp>
-#include <engine/world/world.hpp>
 
 #include <cstdint>
 

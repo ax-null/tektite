@@ -1,9 +1,9 @@
 #pragma once
 
-#include "tilemap.hpp"
+#include "world/tilemap.hpp"
 
-#include <engine/graphics/graphics.hpp>
-#include <engine/script/script_engine.hpp>
+#include "graphics.hpp"
+#include "script.hpp"
 
 #include <vector>
 
@@ -15,7 +15,7 @@ namespace paper
     class World
     {
       public:
-        World(ScriptEngine *script) : m_script_engine(script) {}
+        World(Script *script) : m_script_engine(script) {}
         ~World() = default;
 
         void update();
@@ -34,7 +34,7 @@ namespace paper
         std::unique_ptr<TileMap> m_tilemap;
         std::vector<Entity *> m_entities, m_tagged;
 
-        ScriptEngine *m_script_engine;
+        Script *m_script_engine;
     };
 
 } // namespace paper

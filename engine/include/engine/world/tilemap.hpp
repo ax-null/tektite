@@ -1,6 +1,6 @@
 #pragma once
 
-#include <engine/graphics/texture.hpp>
+#include "../graphics/texture.hpp"
 
 #include <cstdint>
 #include <memory>

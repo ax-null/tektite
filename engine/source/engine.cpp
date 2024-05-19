@@ -10,20 +10,20 @@ namespace paper
     {
         m_running = true;
 
-        m_audio_engine = std::make_unique<AudioEngine>();
+        m_audio = std::make_unique<Audio>();
         m_graphics = std::make_unique<Graphics>(640, 480);
-        m_input_system = std::make_unique<InputSystem>();
-        m_script_engine = std::make_unique<ScriptEngine>();
-        m_world = std::make_unique<World>(m_script_engine.get());
+        m_input = std::make_unique<Input>();
+        m_script = std::make_unique<Script>();
+        m_world = std::make_unique<World>(m_script.get());
 
         m_font = std::make_unique<Font>("assets/fonts/normal_font.fnt");
 
-        m_script_engine->initialize_module(m_audio_engine.get());
-        m_script_engine->initialize_module(m_graphics.get());
-        m_script_engine->initialize_module(m_input_system.get());
-        m_script_engine->initialize_module(m_world.get());
+        m_script->initialize_module(m_audio.get());
+        m_script->initialize_module(m_graphics.get());
+        m_script->initialize_module(m_input.get());
+        m_script->initialize_module(m_world.get());
 
-        m_script_engine->define_objects();
+        m_script->define_objects();
 
         m_world->load_map("assets/maps/test_map.json");
 
@@ -37,7 +37,7 @@ namespace paper
 
     void Engine::update()
     {
-        m_input_system->update();
+        m_input->update();
         m_world->update();
 
         Camera *camera = m_graphics->get_camera();
@@ -46,7 +46,7 @@ namespace paper
         camera->keep_in_bounds(0, 0, map_width - m_graphics->get_virtual_width(), map_height - m_graphics->get_virtual_height());
         camera->update();
 
-        if (m_input_system->is_pressed(keyboard::Escape))
+        if (m_input->is_pressed(keyboard::Escape))
             m_running = false;
     }
 
@@ -71,9 +71,9 @@ namespace paper
         text.append(", ");
         text.append(std::to_string(camera->get_y()));
         text.append("\nMouse:");
-        text.append(std::to_string(m_input_system->get_x()));
+        text.append(std::to_string(m_input->get_x()));
         text.append(", ");
-        text.append(std::to_string(m_input_system->get_y()));
+        text.append(std::to_string(m_input->get_y()));
         text.append("\n");
 
         m_graphics->set_color(1.0f, 1.0f, 1.0f, 1.0f);

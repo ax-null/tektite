@@ -1,4 +1,4 @@
-#include <engine/graphics/graphics.hpp>
+#include <engine/graphics.hpp>
 
 #ifdef __EMSCRIPTEN__
 #include <GLES2/gl2.h>

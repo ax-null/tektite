@@ -37,9 +37,9 @@ void window_size_callback(GLFWwindow *window, int width, int height)
 void key_callback(GLFWwindow *window, int key, int scancode, int action, int mods)
 {
     if (action == GLFW_PRESS)
-        state.engine->get_input_system()->on_press(translate_key(key));
+        state.engine->get_input()->on_press(translate_key(key));
     else if (action == GLFW_RELEASE)
-        state.engine->get_input_system()->on_release(translate_key(key));
+        state.engine->get_input()->on_release(translate_key(key));
 }
 
 void mouse_button_callback(GLFWwindow *window, int button, int action, int mods)
@@ -61,14 +61,14 @@ void mouse_button_callback(GLFWwindow *window, int button, int action, int mods)
     }
 
     if (action == GLFW_PRESS)
-        state.engine->get_input_system()->on_press(mouse_button);
+        state.engine->get_input()->on_press(mouse_button);
     else if (action == GLFW_RELEASE)
-        state.engine->get_input_system()->on_release(mouse_button);
+        state.engine->get_input()->on_release(mouse_button);
 }
 
 void cursor_position_callback(GLFWwindow *window, double xpos, double ypos)
 {
-    state.engine->get_input_system()->on_move(xpos, ypos);
+    state.engine->get_input()->on_move(xpos, ypos);
 }
 
 int main(int argc, char **argv)

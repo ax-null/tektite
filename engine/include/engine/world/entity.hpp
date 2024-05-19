@@ -1,8 +1,7 @@
 #pragma once
 
-#include "world.hpp"
-
-#include <engine/script/script_engine.hpp>
+#include "../script.hpp"
+#include "../world.hpp"
 
 #include <stdint.h>
 #include <string>
